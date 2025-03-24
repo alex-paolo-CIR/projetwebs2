@@ -1,0 +1,191 @@
+.conteneur-commande {
+  position: absolute;
+  width: 80%;
+  max-width: 600px;
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.575);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 30px 40px;
+}
+
+.conteneur-commande h1 {
+  font-size: 36px;
+  text-align: center;
+  color: white;
+}
+
+.titre-commande {
+  text-align: center;
+  /* margin-bottom: 30px; Espacement avec les cercles */
+  color: white;
+  padding: 20px;
+}
+
+.titre-commande h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.etapes {
+  display: flex; /* flex */
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Les cercles occupent toute la largeur */
+}
+
+.etape {
+  text-align: center;
+  flex: 1;
+  position: relative;
+}
+
+.etape:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -50%;
+  width: 100%;
+  height: 4px;
+  background-color: #ddd;
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.etape.active:not(:last-child)::after {
+  transform: translateY(-30px); /* Décalage vertical */
+  background-color: rgb(255, 238, 0);
+  height: 10px;
+}
+
+.cercle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #383838;
+  color: #000;
+  line-height: 50px;
+  margin: 0 auto 10px;
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+}
+
+.etape.active .cercle {
+  background-color: rgb(255, 238, 0);
+}
+
+.description {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 5px 0;
+  color: white;
+}
+
+.date {
+  font-size: 12px;
+  color: #c5c5c5;
+}
+
+.informations-transporteur {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.informations-transporteur h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: rgb(255, 238, 0); /* Titre en jaune */
+}
+
+.informations-transporteur p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.informations-transporteur span {
+  font-weight: bold;
+  color: white;
+}
+
+/* ---------- responsive ---------- */
+/* pour ordi */
+@media only screen and (min-width: 600px) {
+}
+
+/* pour tel */
+@media only screen and (max-width: 700px) {
+  .conteneur-commande {
+    position: relative;
+    width: 90%;
+    height: auto;
+    padding: 15px;
+  }
+
+  .conteneur-commande h1 {
+    font-size: 34px;
+  }
+
+  .titre-commande h2 {
+    font-size: 20px;
+  }
+
+  .etapes {
+    flex-direction: column;
+  }
+  .etape {
+    margin-bottom: 10px;
+  }
+
+  .cercle {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 15px;
+  }
+
+  .etape:not(:last-child)::after {
+    display: none;
+  }
+
+  .etape.active:not(:last-child)::after {
+    display: none;
+  }
+
+  .informations-transporteur {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .informations-transporteur h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: rgb(255, 238, 0); /* Titre en jaune */
+  }
+
+  .informations-transporteur p {
+    font-size: 18px;
+    margin: 5px 0;
+  }
+}

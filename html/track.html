@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta name="viewport" content="width=device.width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>MSD - Commande</title>
+    <link rel="icon" type="image/x-icon" href="../media/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../style/main.css">
+    <link rel="stylesheet" type="text/css" href="../style/navbar.css">
+    <link rel="stylesheet" type="text/css" href="../style/track.css">
+</head>
+
+<body>
+    <section class="fond">
+        <video autoplay loop muted playsinline class="video-webm">
+            <source src="../media/fond.webm" type="video/webm">
+            Votre navigateur ne supporte pas les vidéos HTML5.
+        </video>
+
+        <div class="overlay">
+            <nav class="navbar">
+                <div class="utils-co">
+                    <a href="connexion.html">
+                        <img id="connexion" class="icones" src="../media/icon-account.png" alt="icon-account">
+                    </a>
+                </div>
+
+                <div class="logo">
+                    <a href="../index.html">
+                        <img src="../media/logo_msd.png" alt="Logo">
+                    </a>
+                </div>
+
+                <div class="utils-ca">
+                    <button popovertarget="cart" popovertargetaction="show" class="button">
+                        <img id="panier" class="icones" src="../media/icon-cart.png" alt="Panier">
+                    </button>
+                </div>
+
+                <div class="navbar-menu">
+                    <a href="accueil.html">ACCUEIL</a>
+                    <a href="shop.html">BOUTIQUE</a>
+                    <a href="contact.html">CONTACT</a>
+                </div>
+
+                <nav popover id="cart">
+                    <button popovertarget="cart" popovertargetaction="hide" class="button close-button">×</button>
+                    <div class="cart-item">
+                        <img src="../media/merch/vinyl1.png" alt="Vinyl 2">
+                        <div class="item-details">
+                            <p>ROCKSTAR Vinyle EDITION DELUXE</p>
+                            <p>Prix: 39,99 €</p>
+                        </div>
+                    </div>
+                    <div class="cart-item">
+                        <img src="../media/merch/Pull_noir_devant.png" alt="Pull 1">
+                        <div class="item-details">
+                            <p>Pull Noir Msd</p>
+                            <p>Prix: 74,99 €</p>
+                            <p>Taille: L</p>
+                        </div>
+                    </div>
+                    <div class="cart-item">
+                        <img src="../media/merch/affiche-normall.png" alt="Poster 2">
+                        <div class="item-details">
+                            <p>Pack de poster Msd x3</p>
+                            <p>Prix: 19,99 €</p>
+                        </div>
+                    </div>
+                    <div class="cart-item">
+                        <img src="../media/merch/Teeshirt_b_devant.png" alt="T-shirt 2">
+                        <div class="item-details">
+                            <p>T-shirt blanc Msd</p>
+                            <p>Prix: 24,99 €</p>
+                            <p>Taille: XL</p>
+                        </div>
+                    </div>
+                    <div class="checkout">
+                        <p>Total: 159,96 €</p>
+                        <button>Procéder au paiement</button>
+                    </div>
+                </nav>
+
+            </nav>
+
+            <div class="conteneur-commande">
+                <h1>Suivi des commandes</h1>
+                <div class="titre-commande">
+                    <h2>Commande #MAJRP1337 en cours | Statut : En livraison</h2>
+                </div>
+
+                <div class="etapes">
+                    <div class="etape active">
+                        <div class="cercle">1</div>
+                        <p class="description">Confirmée</p>
+                        <p class="date">18 Nov 2024</p>
+                    </div>
+
+                    <div class="etape active">
+                        <div class="cercle">2</div>
+                        <p class="description">Expédié</p>
+                        <p class="date">19 Nov 2024</p>
+                    </div>
+
+                    <div class="etape active">
+                        <div class="cercle">3</div>
+                        <p class="description">En livraison</p>
+                        <p class="date">20 Nov 2024</p>
+                    </div>
+
+                    <div class="etape">
+                        <div class="cercle">4</div>
+                        <p class="description">Livrée</p>
+                        <p class="date">...</p>
+                    </div>
+                </div>
+
+                <div class="informations-transporteur">
+                    <h2>TRANSPORTEUR : COLISSIMO</h2>
+                    <p>Numéro de colis : <span>8A564Z78DFG</span></p>
+                    <p>Date de livraison estimée : <span>23 Nov 2024</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 MSD. TOUT DROITS RESERVES.</p>
+            <div class="socials">
+                <a href="https://soundcloud.com/msdmsd" class="social-icon">SoundCloud</a>
+                <a href="https://www.youtube.com/@Msd-Prime" class="social-icon">YouTube</a>
+                <a href="https://www.instagram.com/msdprod_/?next=%2Fmars.620%2F" class="social-icon">Instagram</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
