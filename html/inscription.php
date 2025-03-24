@@ -35,31 +35,38 @@
 
             <div class="conteneur-login-global">
                 <div class="conteneur-login">
-                    <form action="track.html" method="get">
+                    <form action="../php/ajouter.php" method="post">
 
                         <h1>Inscription</h1>
 
                         <div class="input-box">
-                            <input type="text" placeholder="Nom d'utilisateur" required>
+                            <input type="text" placeholder="Nom" name="nom" required>
                             <img id="user" src="../media/icon-account.png" alt="icon-account">
                         </div>
 
                         <div class="input-box">
-                            <input type="email" placeholder="Adresse e-mail" required>
+                            <input type="text" placeholder="Prénom" name="prenom" required>
+                            <img id="user" src="../media/icon-account.png" alt="icon-account">
+                        </div>
+
+                        <div class="input-box">
+                            <input type="email" placeholder="Adresse e-mail" name="email" required>
                             <img id="mail" src="../media/icon-mail.png" alt="icon-mail">
                         </div>
 
                         <div class="input-box">
-                            <input type="password" placeholder="Mot de passe" required>
+                            <input type="password" placeholder="Mot de passe" name="password" required>
                             <img id="pwd" src="../media/icon-lock.png" alt="icon-lock">
                         </div>
 
-                        <button type="submit" class="btn">S'inscrire</button>
+
+                        <button type="submit" class="btn" name="Ajouter" >S'inscrire</button>
 
                         <div class="inscription">
                             <p>Déjà un compte ? <a href="connexion.html">Se connecter</a></p>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
