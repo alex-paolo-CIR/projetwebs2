@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device.width, initial-scale=1.0">
     <meta charset="utf-8">
-    <title>MSD - Connexion</title>
+    <title>MSD - Inscription</title>
     <link rel="icon" type="image/x-icon" href="../media/favicon.ico">
     <link rel="stylesheet" type="text/css" href="../style/main.css">
     <link rel="stylesheet" type="text/css" href="../style/navbar.css">
@@ -32,28 +32,43 @@
                     <a href="contact.html">CONTACT</a>
                 </div>
             </nav>
+
             <div class="conteneur-login-global">
                 <div class="conteneur-login">
-                    <form action="track.html" method="get">
+                    <form action="../php/ajouter.php" method="post">
 
-                        <h1>Connexion</h1>
+                        <h1>Inscription</h1>
+
+                            <div class="np">
+                                <div class="input-box" id="nom">
+                                <input type="text" placeholder="Nom" name="nom" required>
+                            </div>
+
+                            <div class="input-box">
+                                <input type="text" placeholder="Prénom" name="prenom" required>
+                            </div>
+                            
+                        </div>
+                        
 
                         <div class="input-box">
-                            <input type="text" placeholder="Nom d'utilisateur" required>
-                            <img id="user" src="../media/icon-account.png" alt="icon-account">
+                            <input type="email" placeholder="Adresse e-mail" name="email" required>
+                            <img id="mail" src="../media/icon-mail.png" alt="icon-mail">
                         </div>
 
                         <div class="input-box">
-                            <input type="password" placeholder="Mot de passe" required>
+                            <input type="password" placeholder="Mot de passe" name="password" required>
                             <img id="pwd" src="../media/icon-lock.png" alt="icon-lock">
                         </div>
 
-                        <button type="submit" class="btn">Se connecter</button>
+
+                        <button type="submit" class="btn" name="Ajouter" >S'inscrire</button>
 
                         <div class="inscription">
-                            <p>Vous n'avez pas de compte ? <a href="inscription.html">S'inscrire</a></p>
+                            <p>Déjà un compte ? <a href="connexion.html">Se connecter</a></p>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
