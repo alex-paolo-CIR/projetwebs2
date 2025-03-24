@@ -35,7 +35,7 @@
                     header('location:../html/connexion.php?error=mdp');
                 }
             } else {
-                // Aucun utilisateur trouvé avec cet email
+                // Aucun utilisateur trouvé avec cet email l
                 header('location:../html/connexion.php?error=email');
             }
 
