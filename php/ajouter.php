@@ -17,7 +17,7 @@
 			$nom = $_POST["nom"];
 			$prenom = $_POST["prenom"];
 			$email = $_POST["email"];
-			$password = $_POST["password"];
+			$password = password_hash($_POST["password"], PASSWORD_BCRYPT);
 
 			$reqPrep= "INSERT INTO user VALUES (NULL, :nom, :prenom, :email, :password)";//La requete SQL INSERT INTO 
 

@@ -34,21 +34,21 @@
             </nav>
             <div class="conteneur-login-global">
                 <div class="conteneur-login">
-                    <form action="track.html" method="get">
+                    <form action="../php/login.php" method="post">
 
                         <h1>Connexion</h1>
 
                         <div class="input-box">
-                            <input type="text" placeholder="Nom d'utilisateur" required>
-                            <img id="user" src="../media/icon-account.png" alt="icon-account">
+                            <input type="email" placeholder="Email" name="email" required>
+                            <img id="user" src="../media/icon-mail.png" alt="icon-account">
                         </div>
 
                         <div class="input-box">
-                            <input type="password" placeholder="Mot de passe" required>
+                            <input type="password" placeholder="Mot de passe" name="password" required>
                             <img id="pwd" src="../media/icon-lock.png" alt="icon-lock">
                         </div>
 
-                        <button type="submit" class="btn">Se connecter</button>
+                        <button type="submit" class="btn" name="Connexion" >Se connecter</button>
 
                         <div class="inscription">
                             <p>Vous n'avez pas de compte ? <a href="inscription.php">S'inscrire</a></p>
