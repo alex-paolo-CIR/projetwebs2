@@ -39,15 +39,17 @@
 
                         <h1>Inscription</h1>
 
-                        <div class="input-box">
-                            <input type="text" placeholder="Nom" name="nom" required>
-                            <img id="user" src="../media/icon-account.png" alt="icon-account">
-                        </div>
+                            <div class="np">
+                                <div class="input-box" id="nom">
+                                <input type="text" placeholder="Nom" name="nom" required>
+                            </div>
 
-                        <div class="input-box">
-                            <input type="text" placeholder="Prénom" name="prenom" required>
-                            <img id="user" src="../media/icon-account.png" alt="icon-account">
+                            <div class="input-box">
+                                <input type="text" placeholder="Prénom" name="prenom" required>
+                            </div>
+                            
                         </div>
+                        
 
                         <div class="input-box">
                             <input type="email" placeholder="Adresse e-mail" name="email" required>

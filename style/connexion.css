@@ -96,6 +96,19 @@
   display: none;
 }
 
+.np {
+  position: relative;
+  display: flex;
+}
+
+#nom {
+  margin-right: 10px;
+}
+
+.np .input-box {
+  margin-bottom: 0%
+}
+
 /* ---------- responsive ---------- */
 /* pour ordi */
 @media only screen and (min-width: 600px) {
