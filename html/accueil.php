@@ -38,16 +38,13 @@
     <div class="overlay">
       <nav class="navbar">
         <div class="utils-co">
-          <a href="
-            <?php if (!isset($_SESSION['id_user'])) {
-              echo "connexion.php";
-            }?>">
             <?php if (isset($_SESSION['id_user'])) { ?>
-              <p>Bonjour <?= $user['prenom'] ?></p>
+            <a><p id="helloP">Bonjour, <br> <?= $user['prenom'] ?></p></a>
             <?php } else { ?>
+            <a href="connexion.php">
               <img id="connexion" class="icones" src="../media/icon-account.png" alt="icon-account">
+            </a>
             <?php } ?>
-          </a>
         </div>
         <div class="logo">
           <a href="../index.html">

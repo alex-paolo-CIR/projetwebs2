@@ -34,6 +34,13 @@
   width: 100%;
 }
 
+#helloP {
+  color: white;
+  font-size: 2vh;
+  font-family: Brigends;
+  letter-spacing: 2px;
+}
+
 .infos {
   margin: 50px;
   padding: 10px;

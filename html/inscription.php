@@ -35,7 +35,7 @@
 
             <div class="conteneur-login-global">
                 <div class="conteneur-login">
-                    <form action="../php/ajouter.php" method="post">
+                    <form action="../php/ajouterUser.php" method="post">
 
                         <h1>Inscription</h1>
 
@@ -65,7 +65,7 @@
                         <button type="submit" class="btn" name="Ajouter" >S'inscrire</button>
 
                         <div class="inscription">
-                            <p>Déjà un compte ? <a href="connexion.html">Se connecter</a></p>
+                            <p>Déjà un compte ? <a href="connexion.php">Se connecter</a></p>
                         </div>
                     </form>
 

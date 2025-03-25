@@ -22,7 +22,7 @@
 			$req1->execute(array(':nom' => $nom, ':prenom' => $prenom, ':email' => $email, ':password' => $password));
 
 			$conn= NULL;
-			header("location:../html/accueil.html");
+			header("location:../html/accueil.php");
 		}                 
 		catch(Exception $e){
 			die("Erreur : " . $e->getMessage());
