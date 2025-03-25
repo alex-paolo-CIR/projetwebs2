@@ -1,3 +1,19 @@
+<?php
+    session_start();
+    require("../php/login.php");
+    if (isset($_SESSION['id_user'])) {
+        $userId = $_SESSION['id_user'];
+        require("../php/db.php");
+        $reqPrep = "SELECT * FROM user WHERE id_user = :id_user";
+        $req1 = $conn->prepare($reqPrep);
+        $req1->execute(array(':id_user' => $userId));
+        $user = $req1->fetch(PDO::FETCH_ASSOC);
+        $conn = NULL;
+        $name = $user['prenom'];
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -22,8 +38,15 @@
     <div class="overlay">
       <nav class="navbar">
         <div class="utils-co">
-          <a href="connexion.html">
-            <img id="connexion" class="icones" src="../media/icon-account.png" alt="icon-account">
+          <a href="
+            <?php if (!isset($_SESSION['id_user'])) {
+              echo "connexion.php";
+            }?>">
+            <?php if (isset($_SESSION['id_user'])) { ?>
+              <p>Bonjour <?= $user['prenom'] ?></p>
+            <?php } else { ?>
+              <img id="connexion" class="icones" src="../media/icon-account.png" alt="icon-account">
+            <?php } ?>
           </a>
         </div>
         <div class="logo">
