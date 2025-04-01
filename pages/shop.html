@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar">
         <div class="utils-co">
-            <a href="connexion.html">
+            <a href="connexion.php">
                 <img id="connexion" class="icones" src="../media/icon-account.png" alt="icon-account">
             </a>
         </div>
@@ -70,28 +70,14 @@
         </nav>
 
         <div class="navbar-menu">
-            <a href="accueil.html">ACCUEIL</a>
-            <a href="shop.html">BOUTIQUE</a>
+            <a href="accueil.php">ACCUEIL</a>
+            <a href="shop.php">BOUTIQUE</a>
             <a href="contact.html">CONTACT</a>
         </div>
     </nav>
 
     <div class="conteneur-shop">
         <div class="shop-grid">
-
-            <?php
-
-            // Connexion à la base de données
-            for ($i = 0; $i < 10; $i++) {
-                echo '<div class="item" id="item' . ($i + 1) . '">';
-                echo '<a href="#modal' . ($i + 1) . '">';
-                echo '<img src="../media/merch/Teeshirt_noir_devant.png" alt="T-shirt ' . ($i + 1) . '">';
-                echo '<p>T-shirt Noir Msd - 24.99€</p>';
-                echo '</a>';
-                echo '</div>';
-            }
-
-            ?>
             <div class="item" id="item1">
                 <a href="#modal1">
                     <img src="../media/merch/Teeshirt_noir_devant.png" alt="T-shirt 1">

@@ -4,10 +4,10 @@
             require("db.php");
 
             if (!isset($_POST['Connexion']) || $_SERVER['REQUEST_METHOD'] != 'POST')
-                header('location:../html/connexion.php');
+                header('location:../pages/connexion.php');
 
             if (empty($_POST['email']) || empty($_POST['password']))
-                header('location:../html/connexion.php');
+                header('location:../pages/connexion.php');
 
             $email = $_POST["email"];
             $password = $_POST["password"];
@@ -23,15 +23,15 @@
                     session_start();
                     $_SESSION['id_user'] = $user['id_user'];
                     $_SESSION['nom'] = $user['nom'];
-                    header("location:../html/accueil.php");
+                    header("location:../pages/accueil.php");
 
                 } else {
          
-                    header('location:../html/connexion.php?error=mdp');
+                    header('location:../pages/connexion.php?error=mdp');
                 }
             } else {
          
-                header('location:../html/connexion.php?error=email');
+                header('location:../pages/connexion.php?error=email');
             }
 
             $conn = NULL;

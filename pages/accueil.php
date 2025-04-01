@@ -1,17 +1,25 @@
 <?php
-    session_start();
-    require("../php/login.php");
-    if (isset($_SESSION['id_user'])) {
-        $userId = $_SESSION['id_user'];
-        require("../php/db.php");
-        $reqPrep = "SELECT * FROM user WHERE id_user = :id_user";
-        $req1 = $conn->prepare($reqPrep);
-        $req1->execute(array(':id_user' => $userId));
-        $user = $req1->fetch(PDO::FETCH_ASSOC);
-        $conn = NULL;
-        $name = $user['prenom'];
-    }
 
+session_start();
+
+require("../php/login.php");
+require("../php/db.php");
+require("../php/connexO.php");
+
+function trouverUtilisateur($conn, $userId) {
+    $stmt = $conn->prepare("SELECT * FROM user WHERE id_user = :id_user");
+    $stmt->execute([':id_user' => $userId]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+$_SESSION['auth'] = connexO();
+
+if ($_SESSION['auth']) {
+    $user = trouverUtilisateur($conn, $_SESSION['id_user']);
+    $name = $user['prenom'] ?? 'Utilisateur';
+}
+
+$conn = null;
 ?>
 
 <!DOCTYPE html>
@@ -38,11 +46,17 @@
     <div class="overlay">
       <nav class="navbar">
         <div class="utils-co">
-            <?php if (isset($_SESSION['id_user'])) { ?>
+            <?php if (connexO()) { ?>
             <a><p id="helloP">Bonjour, <br> <?= $user['prenom'] ?></p></a>
             <?php } else { ?>
             <a href="connexion.php">
               <img id="connexion" class="icones" src="../media/icon-account.png" alt="icon-account">
+            </a>
+            <?php } ?>
+
+            <?php if (isset($_SESSION['id_user'])) { ?>
+            <a href="../php/logout.php">
+              <p>Déconnexion</p>
             </a>
             <?php } ?>
         </div>
@@ -96,8 +110,8 @@
         </nav>
 
         <div class="navbar-menu">
-          <a href="accueil.html">ACCUEIL</a>
-          <a href="shop.html">BOUTIQUE</a>
+          <a href="accueil.php">ACCUEIL</a>
+          <a href="shop.php">BOUTIQUE</a>
           <a href="contact.html">CONTACT</a>
         </div>
       </nav>
