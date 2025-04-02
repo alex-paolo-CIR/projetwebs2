@@ -1,25 +1,5 @@
 <?php
-
-session_start();
-
-require("../php/login.php");
-require("../php/db.php");
-require("../php/connexO.php");
-
-function trouverUtilisateur($conn, $userId) {
-    $stmt = $conn->prepare("SELECT * FROM user WHERE id_user = :id_user");
-    $stmt->execute([':id_user' => $userId]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
-$_SESSION['auth'] = connexO();
-
-if ($_SESSION['auth']) {
-    $user = trouverUtilisateur($conn, $_SESSION['id_user']);
-    $name = $user['prenom'] ?? 'Utilisateur';
-}
-
-$conn = null;
+  require("../traitements/init_session.php");
 ?>
 
 <!DOCTYPE html>
@@ -46,19 +26,22 @@ $conn = null;
     <div class="overlay">
       <nav class="navbar">
         <div class="utils-co">
-            <?php if (connexO()) { ?>
-            <a><p id="helloP">Bonjour, <br> <?= $user['prenom'] ?></p></a>
+          <!-- tempo  -->
+            <?php if (isset($_SESSION["authentifie"]) and $_SESSION["authentifie"]== TRUE) { ?>
+            <a><p id="helloP">Bonjour, <br> <?= $id_user ." ". $prenom ." ". $nom ." ". $email ." ". $authentifie ." ". $admin ." ". $user_date_creation ?></p></a>
             <?php } else { ?>
             <a href="connexion.php">
               <img id="connexion" class="icones" src="../media/icon-account.png" alt="icon-account">
             </a>
             <?php } ?>
-
-            <?php if (isset($_SESSION['id_user'])) { ?>
-            <a href="../php/logout.php">
-              <p>Déconnexion</p>
-            </a>
-            <?php } ?>
+            <style>
+              #helloP {
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+              }
+              </style>
+          <!-- tempo  -->
+             
         </div>
         <div class="logo">
           <a href="../index.html">
@@ -110,8 +93,8 @@ $conn = null;
         </nav>
 
         <div class="navbar-menu">
-          <a href="accueil.php">ACCUEIL</a>
-          <a href="shop.php">BOUTIQUE</a>
+          <a href="accueil.html">ACCUEIL</a>
+          <a href="shop.html">BOUTIQUE</a>
           <a href="contact.html">CONTACT</a>
         </div>
       </nav>

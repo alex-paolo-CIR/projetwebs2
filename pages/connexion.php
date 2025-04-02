@@ -27,14 +27,58 @@
                 </div>
 
                 <div class="navbar-menu">
-                    <a href="accueil.php">ACCUEIL</a>
-                    <a href="shop.php">BOUTIQUE</a>
+                    <a href="accueil.html">ACCUEIL</a>
+                    <a href="shop.html">BOUTIQUE</a>
                     <a href="contact.html">CONTACT</a>
                 </div>
             </nav>
+
+
+            <?php
+                // Vérification des erreurs dans l'URL
+                if (isset($_GET['error'])) {
+                    $error = $_GET['error'];
+                    $errorMessage = '';
+
+                    if ($error == 'empty') {
+                        $errorMessage = "Veuillez remplir tous les champs.";
+                    } elseif ($error == 'mdp') {
+                        $errorMessage = "Mot de passe incorrect.";
+                    } elseif ($error == 'email') {
+                        $errorMessage = "Aucun utilisateur trouvé avec cet email.";
+                    }
+                }
+            ?>
+
+            <!-- Div contenant le message d'erreur si nécessaire -->
+            <?php if (!empty($errorMessage)): ?>
+                <div class="error-message">
+                    <?php echo $errorMessage; ?>
+                </div>
+            <?php endif; ?>
+
+
+            <style>
+                .error-message {
+                    color: red;
+                    background-color: #f8d7da;
+                    border: 1px solid #f5c6cb;
+                    padding: 10px;
+                    margin-bottom: 20px;
+                    border-radius: 5px;
+                    text-align: center;
+                }
+            </style>
+
+
+
             <div class="conteneur-login-global">
+
+
+               
+
                 <div class="conteneur-login">
-                    <form action="../php/login.php" method="post">
+                    <form action="../traitements/traitement_connexion.php" method="post">
 
                         <h1>Connexion</h1>
 
@@ -71,6 +115,7 @@
             </div>
         </div>
     </footer>
+
 </body>
 
 </html>

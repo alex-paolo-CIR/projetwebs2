@@ -4,15 +4,15 @@
             require("db.php");
 
             if (!isset($_POST['Connexion']) || $_SERVER['REQUEST_METHOD'] != 'POST')
-                header('location:../pages/connexion.php');
+                header('location:../pages//connexion.php');
 
             if (empty($_POST['email']) || empty($_POST['password']))
-                header('location:../pages/connexion.php');
+                header('location:../pages/connexion.php?error=empty');
 
             $email = $_POST["email"];
             $password = $_POST["password"];
 
-            $reqPrep = "SELECT * FROM user WHERE email = :email";
+            $reqPrep = "SELECT * FROM utilisateurs WHERE email = :email";
             $req1 = $conn->prepare($reqPrep);
             $req1->execute(array(':email' => $email));
             $user = $req1->fetch(PDO::FETCH_ASSOC);
@@ -21,8 +21,13 @@
                 if (password_verify($password, $user['password'])) {
     
                     session_start();
-                    $_SESSION['id_user'] = $user['id_user'];
+                    $_SESSION['id_user'] = $user['id'];
                     $_SESSION['nom'] = $user['nom'];
+                    $_SESSION['prenom'] = $user['prenom'];
+                    $_SESSION['email'] = $user['email'];
+                    $_SESSION['authentifie'] = TRUE;
+                    $_SESSION['admin'] = $user['admin'];
+                    $_SESSION['date_creation'] = $user['date_creation'];
                     header("location:../pages/accueil.php");
 
                 } else {
