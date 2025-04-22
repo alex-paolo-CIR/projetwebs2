@@ -35,7 +35,7 @@
 
             <div class="conteneur-login-global">
                 <div class="conteneur-login">
-                    <form action="../php/ajouterUser.php" method="post">
+                    <form action="../traitements/traitement_inscription.php" method="post">
 
                         <h1>Inscription</h1>
 
@@ -60,8 +60,12 @@
                             <input type="password" placeholder="Mot de passe" name="password" required>
                             <img id="pwd" src="../media/icon-lock.png" alt="icon-lock">
                         </div>
+                        <div class="input-box">
+                            <input type="password" placeholder="Confirmer le mot de passe" name="password_confirm" required>
+                            <img id="pwd" src="../media/icon-lock.png" alt="icon-lock">
+                        </div>
 
-
+                        
                         <button type="submit" class="btn" name="Ajouter" >S'inscrire</button>
 
                         <div class="inscription">
