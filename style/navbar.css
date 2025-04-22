@@ -106,7 +106,9 @@ header {
 }
 
 .navbar-menu a.active {
-  text-decoration: underline;
+  /* bold and yellow */
+  font-weight: bold;
+  color: yellow;
 }
 
 
