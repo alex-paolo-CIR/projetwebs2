@@ -5,7 +5,7 @@ if (isset($_POST["Envoyer"])) {
 
         // Vérifier si la méthode est bien POST
         if ($_SERVER["REQUEST_METHOD"] != "POST")
-            header("location:../pages/ajouter_produit.php");
+            header("location:../pages/ajouter_item.php");
 
         // Vérifier si les champs obligatoires sont remplis
         if (
@@ -13,7 +13,7 @@ if (isset($_POST["Envoyer"])) {
             empty($_POST["prix"]) || 
             empty($_POST["categorie_id"])
         ) {
-            header("location:../pages/ajouter_produit.php?error=empty");
+            header("location:../pages/ajouter_item.php?error=empty");
             exit();
         }
 
@@ -35,12 +35,12 @@ if (isset($_POST["Envoyer"])) {
         $vPhotoHover = $_FILES['image_hover'];
         
         if (!valider_Photo($vPhoto)) {
-            header("location:../pages/ajouter_produit.php?error=imageclassic");
+            header("location:../pages/ajouter_item.php?error=imageclassic");
             exit();
         }
         
         if (!valider_Photo($vPhotoHover)) {
-            header("location:../pages/ajouter_produit.php?error=imagehover");
+            header("location:../pages/ajouter_item.php?error=imagehover");
             exit();
         }
 

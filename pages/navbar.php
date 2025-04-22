@@ -10,13 +10,25 @@
             <img id="connexion" class="icones" src="../media/icon-account.png" alt="icon-account">
         </a>
         <?php } ?>
+                <!-- se deconnecter -->
+                <?php if (isset($_SESSION["authentifie"]) and $_SESSION["authentifie"]== TRUE) { ?>
+        <a href="../traitements/logout.php" class="deco"><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="red" width="24" height="24" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1" />
+    </svg></a>
+
+        <?php } else { ?>
+        <a href="connexion.php" class="deco"><p>Se connecter</p></a>
+        <?php } ?>
         <style>
             #helloP {
             color: white;
             font-family: Arial, Helvetica, sans-serif;
             }
             </style>
+            
         <!-- tempo  -->
+         
             
     </div>
     <div class="logo">
