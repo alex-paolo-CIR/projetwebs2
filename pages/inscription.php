@@ -60,7 +60,6 @@
                             <input type="password" placeholder="Mot de passe" name="password" required>
                             <img id="pwd" src="../media/icon-lock.png" alt="icon-lock">
                         </div>
-
                         <div class="input-box">
                             <input type="password" placeholder="Confirmer le mot de passe" name="password_confirm" required>
                             <img id="pwd" src="../media/icon-lock.png" alt="icon-lock">
