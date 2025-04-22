@@ -296,7 +296,7 @@ h1 {
 }
 
 
-.item:nth-child(1):hover img {
+/* .item:nth-child(1):hover img {
   content: url("../media/merch/Teeshirt_noir_back.png");
 }
 
@@ -327,7 +327,7 @@ h1 {
 
 .item:nth-child(8):hover img {
   content: url("../media/merch/vinyl1h.png");
-}
+} */
 
 .size-selector {
   display: flex;
