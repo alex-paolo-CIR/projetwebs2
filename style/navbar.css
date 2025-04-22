@@ -105,6 +105,12 @@ header {
   grid-area: navbar-menu;
 }
 
+.navbar-menu a.active {
+  text-decoration: underline;
+}
+
+
+
 /* Médias queries pour les écrans de petite taille */
 @media (max-width: 700px) {
   .utils-co {
@@ -139,3 +145,4 @@ header {
     align-items: center;
   }
 }
+

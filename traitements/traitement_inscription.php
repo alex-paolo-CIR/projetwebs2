@@ -11,6 +11,19 @@
 
             if ($_POST['password'] != $_POST['password_confirm'])
                 header('location:../pages/inscription.php?error=mdp_confirm');
+
+			// email déjà utilisé
+			$reqPrep = "SELECT * FROM utilisateurs WHERE email = :email";
+			$req1 = $conn->prepare($reqPrep);
+			$req1->execute(array(':email' => $_POST["email"]));
+			$user = $req1->fetch(PDO::FETCH_ASSOC);
+
+			if ($user) {
+				header('location:../pages/inscription.php?error=email_utilise');
+			}
+		
+
+
 			else {
 				$nom = $_POST["nom"];
 				$prenom = $_POST["prenom"];

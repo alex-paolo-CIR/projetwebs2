@@ -1,3 +1,17 @@
+<?php
+try {
+    require("../traitements/db.php");
+
+    // Récupérer tous les produits
+    $req = "SELECT * FROM produits";
+    $stmt = $conn->prepare($req);
+    $stmt->execute();
+    $produits = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+    die("Erreur : " . $e->getMessage());
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -9,368 +23,74 @@
     <link rel="stylesheet" type="text/css" href="../style/main.css">
     <link rel="stylesheet" type="text/css" href="../style/navbar.css">
     <link rel="stylesheet" type="text/css" href="../style/shop.css">
+
+    <style>
+        <?php foreach ($produits as $index => $produit): 
+            $image_hover = htmlspecialchars($produit['image_hover']);
+        ?>
+        .item:nth-child(<?= $index + 1 ?>):hover img {
+            content: url("../media/merch/<?= $image_hover ?>");
+        }
+        <?php endforeach; ?>
+    </style>
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="utils-co">
-            <a href="connexion.php">
-                <img id="connexion" class="icones" src="../media/icon-account.png" alt="icon-account">
-            </a>
-        </div>
-
-        <div class="logo">
-            <a href="../index.html">
-                <img src="../media/logo_msd.png" alt="Logo">
-            </a>
-        </div>
-
-        <div class="utils-ca">
-            <button popovertarget="cart" popovertargetaction="show" class="button">
-                <img id="panier" class="icones" src="../media/icon-cart.png" alt="Panier">
-            </button>
-        </div>
-
-        <nav popover id="cart">
-            <button popovertarget="cart" popovertargetaction="hide" class="button close-button">×</button>
-            <div class="cart-item">
-                <img src="../media/merch/vinyl1.png" alt="Vinyl 2">
-                <div class="item-details">
-                    <p>ROCKSTAR Vinyle EDITION DELUXE</p>
-                    <p>Prix: 39,99 €</p>
-                </div>
-            </div>
-            <div class="cart-item">
-                <img src="../media/merch/Pull_noir_devant.png" alt="Pull 1">
-                <div class="item-details">
-                    <p>Pull Noir Msd</p>
-                    <p>Prix: 74,99 €</p>
-                    <p>Taille: L</p>
-                </div>
-            </div>
-            <div class="cart-item">
-                <img src="../media/merch/affiche-normall.png" alt="Poster 2">
-                <div class="item-details">
-                    <p>Pack de poster Msd x3</p>
-                    <p>Prix: 19,99 €</p>
-                </div>
-            </div>
-            <div class="cart-item">
-                <img src="../media/merch/Teeshirt_b_devant.png" alt="T-shirt 2">
-                <div class="item-details">
-                    <p>T-shirt blanc Msd</p>
-                    <p>Prix: 24,99 €</p>
-                    <p>Taille: XL</p>
-                </div>
-            </div>
-            <div class="checkout">
-                <p>Total: 159,96 €</p>
-                <button>Procéder au paiement</button>
-            </div>
-        </nav>
-
-        <div class="navbar-menu">
-            <a href="accueil.php">ACCUEIL</a>
-            <a href="shop.php">BOUTIQUE</a>
-            <a href="contact.html">CONTACT</a>
-        </div>
-    </nav>
+<?php require_once 'navbar.php'; ?>
 
     <div class="conteneur-shop">
         <div class="shop-grid">
-
             <?php
-
-            // Connexion à la base de données
-            for ($i = 0; $i < 10; $i++) {
-                echo '<div class="item" id="item' . ($i + 1) . '">';
-                echo '<a href="#modal' . ($i + 1) . '">';
-                echo '<img src="../media/merch/Teeshirt_noir_devant.png" alt="T-shirt ' . ($i + 1) . '">';
-                echo '<p>T-shirt Noir Msd - 24.99€</p>';
-                echo '</a>';
-                echo '</div>';
-            }
-
+            foreach ($produits as $index => $produit):
+                $nom = htmlspecialchars($produit['nom']);
+                $prix = number_format($produit['prix'], 2);
+                $image = htmlspecialchars($produit['image']);
             ?>
-            <div class="item" id="item1">
-                <a href="#modal1">
-                    <img src="../media/merch/Teeshirt_noir_devant.png" alt="T-shirt 1">
-                    <p>T-shirt Noir Msd - 24.99€</p>
-                </a>
-            </div>
-            <div class="item" id="item2">
-                <a href="#modal2">
-                    <img src="../media/merch/Teeshirt_b_devant.png" alt="T-shirt 2">
-                    <p>T-shirt Blanc Msd - 24.99€</p>
-                </a>
-            </div>
-            <div class="item" id="item3">
-                <a href="#modal3">
-                    <img src="../media/merch/Pull_noir_devant.png" alt="Pull 1">
-                    <p>Pull Noir Msd - 74.99€</p>
-                </a>
-            </div>
-            <div class="item" id="item4">
-                <a href="#modal4">
-                    <img src="../media/merch/Pull_gris_devant.png" alt="Pull 2">
-                    <p>Pull Gris Msd - 74.99€</p>
-                </a>
-            </div>
-            <div class="item" id="item5">
-                <a href="#modal5">
-                    <img src="../media/merch/affiche-normall.png" alt="Poster 1">
-                    <p>Poster Msd - 7.99€</p>
-                </a>
-            </div>
-            <div class="item" id="item6">
-                <a href="#modal6">
-                    <img src="../media/merch/affiche-normall.png" alt="Poster 2">
-                    <p>Pack de poster Msd x3 - 19.99€</p>
-                </a>
-            </div>
-            <div class="item" id="item7">
-                <a href="#modal7">
-                    <img src="../media/merch/cd_ferme.png" alt="cd 1">
-                    <p>CD Msd "STAR" - 11.99€</p>
-                </a>
-            </div>
-            <div class="item" id="item8">
-                <a href="#modal8">
-                    <img src="../media/merch/vinyl1.png" alt="Vinyl">
-                    <p>ROCKSTAR Vinyle - 29.99€ </p>
-                </a>
-            </div>
+                <div class="item" id="item<?= $index + 1 ?>">
+                    <a href="#modal<?= $index + 1 ?>">
+                        <img src="../media/merch/<?= $image ?>" alt="<?= $nom ?>">
+                        <p><?= $nom ?> - <?= $prix ?>€</p>
+                    </a>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 
-    <!-- Modals -->
-
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <a href="#item1" class="close">×</a>
-            <div class="modal-layout">
-                <div class="agauche">
-                    <img src="../media/merch/Teeshirt_noir_devant.png" alt="T-shirt Noir">
-                </div>
-                <div class="modal-info">
-                    <h2>T-shirt Noir MSD</h2>
-                    <p class="description">T-shirt noir élégant avec le logo MSD. Confortable et stylé, parfait pour tous les fans. Fabriqué en coton de haute qualité pour un look et un confort incomparables.</p>
-                    <p class="price">24.99€</p>
-                    <div class="size-selector">
-                        <input type="radio" id="size-xs-1" name="size-1" value="XS" hidden>
-                        <label for="size-xs-1" class="size-option">XS</label>
-
-                        <input type="radio" id="size-s-1" name="size-1" value="S" hidden>
-                        <label for="size-s-1" class="size-option">S</label>
-
-                        <input type="radio" id="size-m-1" name="size-1" value="M" hidden>
-                        <label for="size-m-1" class="size-option">M</label>
-
-                        <input type="radio" id="size-l-1" name="size-1" value="L" hidden>
-                        <label for="size-l-1" class="size-option">L</label>
-
-                        <input type="radio" id="size-xl-1" name="size-1" value="XL" hidden>
-                        <label for="size-xl-1" class="size-option">XL</label>
-
-                        <input type="radio" id="size-xxl-1" name="size-1" value="XXL" hidden>
-                        <label for="size-xxl-1" class="size-option">XXL</label>
+    <?php
+    foreach ($produits as $index => $produit):
+        $nom = htmlspecialchars($produit['nom']);
+        $image = htmlspecialchars($produit['image']);
+        $description = htmlspecialchars($produit['description']);
+        $prix = number_format($produit['prix'], 2);
+    ?>
+        <div id="modal<?= $index + 1 ?>" class="modal">
+            <div class="modal-content">
+                <a href="#item<?= $index + 1 ?>" class="close">×</a>
+                <div class="modal-layout">
+                    <div class="agauche">
+                        <img src="../media/merch/<?= $image ?>" alt="<?= $nom ?>" class="modal-image">
                     </div>
-                    <button class="add-to-cart">
-                        <span class="button-text">Ajouter au panier</span>
-                        <img class="check-icon" src="../media/icon-check.png" alt="Check">
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal2" class="modal">
-        <div class="modal-content">
-            <a href="#item2" class="close">×</a>
-            <div class="modal-layout">
-                <div class="agauche">
-                    <img src="../media/merch/Teeshirt_b_devant.png" alt="T-shirt Blanc">
-                </div>
-                <div class="modal-info">
-                    <h2>T-shirt Blanc MSD</h2>
-                    <p class="description">T-shirt blanc classique avec le logo MSD. Idéal pour compléter votre garde-robe et afficher votre passion avec style. Coton 100% premium pour un confort assuré.</p>
-                    <p class="price">24.99€</p>
-                    <div class="size-selector">
-                        <input type="radio" id="size-xs-2" name="size-2" value="XS" hidden>
-                        <label for="size-xs-2" class="size-option">XS</label>
-
-                        <input type="radio" id="size-s-2" name="size-2" value="S" hidden>
-                        <label for="size-s-2" class="size-option">S</label>
-
-                        <input type="radio" id="size-m-2" name="size-2" value="M" hidden>
-                        <label for="size-m-2" class="size-option">M</label>
-
-                        <input type="radio" id="size-l-2" name="size-2" value="L" hidden>
-                        <label for="size-l-2" class="size-option">L</label>
-
-                        <input type="radio" id="size-xl-2" name="size-2" value="XL" hidden>
-                        <label for="size-xl-2" class="size-option">XL</label>
-
-                        <input type="radio" id="size-xxl-2" name="size-2" value="XXL" hidden>
-                        <label for="size-xxl-2" class="size-option">XXL</label>
+                    <div class="modal-info">
+                        <h2><?= $nom ?></h2>
+                        <p class="description"><?= $description ?></p>
+                        <p class="price"><?= $prix ?>€</p>
+                        <div class="size-selector">
+                            <?php foreach (['XS', 'S', 'M', 'L', 'XL', 'XXL'] as $size): ?>
+                                <input type="radio" id="size-<?= strtolower($size) ?>-<?= $index + 1 ?>" name="size-<?= $index + 1 ?>" value="<?= $size ?>" hidden>
+                                <label for="size-<?= strtolower($size) ?>-<?= $index + 1 ?>" class="size-option"><?= $size ?></label>
+                            <?php endforeach; ?>
+                        </div>
+                        <button class="add-to-cart">
+                            <span class="button-text">Ajouter au panier</span>
+                            <img class="check-icon" src="../media/icon-check.png" alt="Check">
+                        </button>
                     </div>
-                    <button class="add-to-cart">
-                        <span class="button-text">Ajouter au panier</span>
-                        <img class="check-icon" src="../media/icon-check.png" alt="Check">
-                    </button>
                 </div>
             </div>
         </div>
-    </div>
+    <?php endforeach; ?>
 
-    <div id="modal3" class="modal">
-        <div class="modal-content">
-            <a href="#item3" class="close">×</a>
-            <div class="modal-layout">
-                <div class="agauche">
-                    <img src="../media/merch/Pull_noir_devant.png" alt="Pull Noir">
-                </div>
-                <div class="modal-info">
-                    <h2>Pull Noir MSD</h2>
-                    <p class="description">Pull noir en coton doux avec un design exclusif MSD. Parfait pour rester au chaud avec style tout en soutenant votre groupe favori.</p>
-                    <p class="price">74.99€</p>
-                    <div class="size-selector">
-                        <input type="radio" id="size-xs-3" name="size-3" value="XS" hidden>
-                        <label for="size-xs-3" class="size-option">XS</label>
+    <?php require_once 'footer.php'; ?>
 
-                        <input type="radio" id="size-s-3" name="size-3" value="S" hidden>
-                        <label for="size-s-3" class="size-option">S</label>
-
-                        <input type="radio" id="size-m-3" name="size-3" value="M" hidden>
-                        <label for="size-m-3" class="size-option">M</label>
-
-                        <input type="radio" id="size-l-3" name="size-3" value="L" hidden>
-                        <label for="size-l-3" class="size-option">L</label>
-
-                        <input type="radio" id="size-xl-3" name="size-3" value="XL" hidden>
-                        <label for="size-xl-3" class="size-option">XL</label>
-
-                        <input type="radio" id="size-xxl-3" name="size-3" value="XXL" hidden>
-                        <label for="size-xxl-3" class="size-option">XXL</label>
-                    </div>
-                    <button class="add-to-cart">
-                        <span class="button-text">Ajouter au panier</span>
-                        <img class="check-icon" src="../media/icon-check.png" alt="Check">
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal4" class="modal">
-        <div class="modal-content">
-            <a href="#item4" class="close">×</a>
-            <div class="modal-layout">
-                <div class="agauche">
-                    <img src="../media/merch/Pull_gris_devant.png" alt="Pull Gris">
-                </div>
-                <div class="modal-info">
-                    <h2>Pull Gris MSD</h2>
-                    <p class="description">Pull gris confortable et chic avec une finition impeccable. Arborez fièrement le logo MSD tout en profitant de la qualité premium.</p>
-                    <p class="price">74.99€</p>
-                    <div class="size-selector">
-                        <input type="radio" id="size-xs-4" name="size-4" value="XS" hidden>
-                        <label for="size-xs-4" class="size-option">XS</label>
-
-                        <input type="radio" id="size-s-4" name="size-4" value="S" hidden>
-                        <label for="size-s-4" class="size-option">S</label>
-
-                        <input type="radio" id="size-m-4" name="size-4" value="M" hidden>
-                        <label for="size-m-4" class="size-option">M</label>
-
-                        <input type="radio" id="size-l-4" name="size-4" value="L" hidden>
-                        <label for="size-l-4" class="size-option">L</label>
-
-                        <input type="radio" id="size-xl-4" name="size-4" value="XL" hidden>
-                        <label for="size-xl-4" class="size-option">XL</label>
-
-                        <input type="radio" id="size-xxl-4" name="size-4" value="XXL" hidden>
-                        <label for="size-xxl-4" class="size-option">XXL</label>
-                    </div>
-                    <button class="add-to-cart">
-                        <span class="button-text">Ajouter au panier</span>
-                        <img class="check-icon" src="../media/icon-check.png" alt="Check">
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal5" class="modal">
-        <div class="modal-content">
-            <a href="#item5" class="close">×</a>
-            <div class="modal-layout">
-                <div class="agauche">
-                    <img src="../media/merch/affiche-normall.png" alt="Poster Msd">
-                </div>
-                <div class="modal-info">
-                    <h2>Poster MSD</h2>
-                    <p class="description">Poster simple et élégant à l'image de MSD. Ajoutez une touche musicale à votre décoration intérieure.</p>
-                    <p class="price">7.99€</p>
-                    <button class="add-to-cart">
-                        <span class="button-text">Ajouter au panier</span>
-                        <img class="check-icon" src="../media/icon-check.png" alt="Check">
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="modal7" class="modal">
-        <div class="modal-content">
-            <a href="#item7" class="close">×</a>
-            <div class="modal-layout">
-                <div class="agauche">
-                    <img src="../media/merch/cd_ferme.png" alt="CD 1">
-                </div>
-                <div class="modal-info">
-                    <h2>CD Msd "STAR" - 11.99€</h2>
-                    <p class="description">CD original MSD avec une sélection de morceaux incontournables. Une qualité
-                        audio exceptionnelle pour revivre chaque moment musical.</p>
-                    <p class="price">11.99€</p>
-                    <button class="add-to-cart">
-                        <span class="button-text">Ajouter au panier</span>
-                        <img class="check-icon" src="../media/icon-check.png" alt="Check">
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div id="modal8" class="modal">
-        <div class="modal-content">
-            <a href="#item8" class="close">×</a>
-            <div class="modal-layout">
-                <div class="agauche">
-                    <img src="../media/merch/vinyl1.png" alt="Vinyl 1">
-                </div>
-                <div class="modal-info">
-                    <h2>ROCKSTAR Vinyle</h2>
-                    <p class="description">Un vinyle exclusif pour les fans de ROCKSTAR. Édition limitée avec une
-                        qualité sonore exceptionnelle et un design unique qui capture l'essence de l'album.</p>
-                    <p class="price">29.99€</p>
-                    <button class="add-to-cart">
-                        <span class="button-text">Ajouter au panier</span>
-                        <img class="check-icon" src="../media/icon-check.png" alt="Check">
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2024 MSD. TOUS DROITS RÉSERVÉS.</p>
-            <div class="socials">
-                <a href="https://soundcloud.com/msdmsd" class="social-icon">SoundCloud</a>
-                <a href="https://www.youtube.com/@Msd-Prime" class="social-icon">YouTube</a>
-                <a href="https://www.instagram.com/msdprod_/?next=%2Fmars.620%2F" class="social-icon">Instagram</a>
-            </div>
-        </div>
-    </footer>
 </body>
-</pages>
+</html>
