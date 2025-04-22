@@ -1,4 +1,9 @@
 <?php
+  require("../traitements/init_session.php");
+?>
+
+
+<?php
 try {
     require("../traitements/db.php");
 

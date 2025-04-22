@@ -1,3 +1,8 @@
+<?php
+  require("../traitements/init_session.php");
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
