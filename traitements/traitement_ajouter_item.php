@@ -23,49 +23,39 @@ if (isset($_POST["Envoyer"])) {
         $categorie_id = $_POST["categorie_id"];
         $a_des_tailles = isset($_POST["a_des_tailles"]) ? 1 : 0;
 
-        // Traiter l'image principale
-        if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
-            // Valider l'image principale
-            $image = $_FILES['image'];
-            $imageExtension = pathinfo($image['name'], PATHINFO_EXTENSION);
-            $imageExtension = strtolower($imageExtension);
-
-            if (in_array($imageExtension, ['jpg', 'jpeg', 'png'])) {
-                $imageName = $nom . '.' . $imageExtension;
-                $imagePath = "../images/" . $imageName;
-
-                // Déplacer le fichier image dans le dossier images
-                if (!move_uploaded_file($image['tmp_name'], $imagePath)) {
-                    die("Erreur lors de l'upload de l'image principale.");
-                }
-            } else {
-                die("L'image principale n'est pas valide. Assurez-vous qu'elle soit au format JPG, JPEG ou PNG.");
+        function valider_Photo($fichier) {
+            if (!isset($fichier['name']) || $fichier['error'] !== UPLOAD_ERR_OK) {
+                return false;
             }
-        } else {
-            die("Aucune image principale envoyée.");
+            $extension = strtolower(pathinfo($fichier['name'], PATHINFO_EXTENSION));
+            return in_array($extension, ['jpg', 'jpeg', 'png']);
         }
 
-        // Traiter l'image hover
-        if (isset($_FILES['image_hover']) && $_FILES['image_hover']['error'] === 0) {
-            // Valider l'image hover
-            $imageHover = $_FILES['image_hover'];
-            $imageHoverExtension = pathinfo($imageHover['name'], PATHINFO_EXTENSION);
-            $imageHoverExtension = strtolower($imageHoverExtension);
-
-            if (in_array($imageHoverExtension, ['jpg', 'jpeg', 'png'])) {
-                $imageHoverName = $nom . '_hover.' . $imageHoverExtension;
-                $imageHoverPath = "../images/" . $imageHoverName;
-
-                // Déplacer le fichier image hover dans le dossier images
-                if (!move_uploaded_file($imageHover['tmp_name'], $imageHoverPath)) {
-                    die("Erreur lors de l'upload de l'image hover.");
-                }
-            } else {
-                die("L'image hover n'est pas valide. Assurez-vous qu'elle soit au format JPG, JPEG ou PNG.");
-            }
-        } else {
-            die("Aucune image hover envoyée.");
+        $vPhoto = $_FILES['image'];
+        $vPhotoHover = $_FILES['image_hover'];
+        
+        if (!valider_Photo($vPhoto)) {
+            header("location:../pages/ajouter_produit.php?error=imageclassic");
+            exit();
         }
+        
+        if (!valider_Photo($vPhotoHover)) {
+            header("location:../pages/ajouter_produit.php?error=imagehover");
+            exit();
+        }
+
+        //img classique
+        $extension = strtolower(pathinfo($vPhoto['name'], PATHINFO_EXTENSION));
+        $imageName = $nom . '_image.' . $extension;
+        move_uploaded_file($vPhoto['tmp_name'], "../media/merch/$imageName");
+        
+        //hover
+        $extensionHover = strtolower(pathinfo($vPhotoHover['name'], PATHINFO_EXTENSION));
+        $imageHoverName = $nom . '_image_hover.' . $extensionHover;
+        move_uploaded_file($vPhotoHover['tmp_name'], "../media/merch/$imageHoverName");
+        
+
+
 
         // Insérer les informations dans la base de données
         $reqInsertProduit = "INSERT INTO produits (nom, description, prix, image, image_hover, categorie_id, a_des_tailles)

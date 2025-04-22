@@ -8,7 +8,7 @@
 
   <h1>Ajouter un nouvel item au shop</h1>
 
-  <form action="../traitements/traitement_ajouter_item.php" method="POST">
+  <form action="../traitements/traitement_ajouter_item.php" method="POST"enctype="multipart/form-data">
     <label for="nom">Nom :</label><br>
     <input type="text" id="nom" name="nom" required><br><br>
 
