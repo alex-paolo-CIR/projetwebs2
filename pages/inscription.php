@@ -65,7 +65,7 @@
                             <img id="pwd" src="../media/icon-lock.png" alt="icon-lock">
                         </div>
 
-                        
+
                         <button type="submit" class="btn" name="Ajouter" >S'inscrire</button>
 
                         <div class="inscription">
