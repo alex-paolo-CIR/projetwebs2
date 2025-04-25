@@ -110,16 +110,16 @@
 
   <div class="conteneur-contact-global">
     <div class="conteneur-contact">
-      <form>
+      <form action="../traitements/traitement_contact.php" method="POST" enctype="multipart/form-data">
         <h1>Autres Questions ?</h1>
         <div class="input-box">
-          <input type="email" placeholder="Adresse e-mail" required>
+          <input type="email" name="email" placeholder="Adresse e-mail" required>
           <img id="mail" src="../media/icon-mail.png" alt="icon-mail">
         </div>
         <div class="input-box-text">
-          <textarea id="question" name="question" rows="4" placeholder="Message" required></textarea>
+          <textarea id="question" name="message" rows="4" placeholder="Message" required></textarea>
         </div>
-        <button type="submit" class="btn">Envoyer</button>
+        <button type="submit" class="btn" name="Envoyer">Envoyer</button>
       </form>
     </div>
   </div>

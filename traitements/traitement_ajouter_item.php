@@ -3,11 +3,11 @@ if (isset($_POST["Envoyer"])) {
     try {
         require("db.php");
 
-        // Vérifier si la méthode est bien POST
+        // verifier si la méthode est bien POST
         if ($_SERVER["REQUEST_METHOD"] != "POST")
             header("location:../pages/ajouter_item.php");
 
-        // Vérifier si les champs obligatoires sont remplis
+        // verifier si les champs obligatoires sont remplis
         if (
             empty($_POST["nom"]) || 
             empty($_POST["prix"]) || 
@@ -57,7 +57,7 @@ if (isset($_POST["Envoyer"])) {
 
 
 
-        // Insérer les informations dans la base de données
+        // inserer les informations dans la base de données
         $reqInsertProduit = "INSERT INTO produits (nom, description, prix, image, image_hover, categorie_id, a_des_tailles)
                              VALUES (:nom, :description, :prix, :image, :image_hover, :categorie_id, :a_des_tailles)";
         $stmtProduit = $conn->prepare($reqInsertProduit);
@@ -71,10 +71,10 @@ if (isset($_POST["Envoyer"])) {
             ":a_des_tailles" => $a_des_tailles
         ]);
 
-        // Récupérer l'ID du produit inséré
+        // recupérer l'ID du produit inséré
         $produit_id = $conn->lastInsertId();
 
-        // Gérer les tailles
+        // gérer les tailles
         if ($a_des_tailles) {
             $reqTailles = "SELECT id FROM tailles WHERE nom != 'Unique'";
         } else {
@@ -85,7 +85,7 @@ if (isset($_POST["Envoyer"])) {
         $stmtTailles->execute();
         $tailles = $stmtTailles->fetchAll(PDO::FETCH_COLUMN);
 
-        // Insérer les tailles du produit
+        // insérer les tailles du produit
         $reqStock = "INSERT INTO stock_produits (produit_id, taille_id, quantite) VALUES (:produit_id, :taille_id, 0)";
         $stmtStock = $conn->prepare($reqStock);
 
@@ -96,7 +96,7 @@ if (isset($_POST["Envoyer"])) {
             ]);
         }
 
-        // Fermer la connexion et rediriger
+        // fermer la connexion et rediriger
         $conn = NULL;
         header("location:../pages/ajouter_item.php?success=1");
 
