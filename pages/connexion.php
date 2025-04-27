@@ -65,18 +65,7 @@
                     <?php echo $errorMessage; ?>
                 </div>
             <?php endif; ?>
-            <style>
-                .error-message {
-                    position: flex;
-                    color: red;
-                    background-color: #f8d7da;
-                    border: 1px solid #f5c6cb;
-                    padding: 10px;
-                    margin-bottom: 19%;
-                    border-radius: 5px;
-                    text-align: center;
-                }
-            </style>
+
                
 
                 <div class="conteneur-login">

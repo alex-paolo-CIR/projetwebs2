@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Ajouter un nouvel item</title>
+  <link rel="stylesheet" href="../style/ajouter_item.css">
 </head>
 <body>
 
@@ -62,17 +63,7 @@
             <?php endif; ?>
 
 
-            <style>
-                .success-message {
-                    color: green;
-                    background-color: #f8d7da;
-                    border: 1px solid #f5c6cb;
-                    padding: 10px;
-                    margin-bottom: 20px;
-                    border-radius: 5px;
-                    text-align: center;
-                }
-            </style>
+
 
 
 </body>

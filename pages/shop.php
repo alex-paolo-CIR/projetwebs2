@@ -29,7 +29,7 @@ try {
     <link rel="stylesheet" type="text/css" href="../style/navbar.css">
     <link rel="stylesheet" type="text/css" href="../style/shop.css">
 
-    <style>
+
         <?php foreach ($produits as $index => $produit): 
             $image_hover = htmlspecialchars($produit['image_hover']);
         ?>
@@ -37,7 +37,7 @@ try {
             content: url("../media/merch/<?= $image_hover ?>");
         }
         <?php endforeach; ?>
-    </style>
+
 </head>
 
 <body>
