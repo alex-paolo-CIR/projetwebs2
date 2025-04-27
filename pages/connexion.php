@@ -94,6 +94,11 @@
                             <img id="pwd" src="../media/icon-lock.png" alt="icon-lock">
                         </div>
 
+                        <div class="checkbox">
+                            <input type="checkbox" id="remember-me" name="remember-me">
+                            <label for="remember-me">Se souvenir de moi</label>
+                        </div>
+                        
                         <button type="submit" class="btn" name="Connexion" >Se connecter</button>
 
                         <div class="inscription">

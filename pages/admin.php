@@ -363,6 +363,12 @@ if (isset($stock) && is_array($stock)) {
 
     <h1>PANNEL ADMIN</h1>
 
+    <!-- RETOUR A LACCUEIL -->
+    <a href="./accueil.php" style="text-decoration:none; color: #FFF; margin: 0;
+     /* écarter en hauteur de gestion  */
+        padding: 10px 20px; background-color:rgba(117, 117, 117, 0.87); border-radius: 5px; font-size: 1.2em; display: inline-block; margin-bottom: 20px;">Retour à l'accueil</a>
+
+
     <section id="users">
         <h2><i class="fas fa-users"></i> Gestion des Utilisateurs</h2>
         <?php if (isset($error_users)): ?>

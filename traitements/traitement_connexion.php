@@ -28,7 +28,11 @@
                     $_SESSION['authentifie'] = TRUE;
                     $_SESSION['admin'] = $user['admin'];
                     $_SESSION['date_creation'] = $user['date_creation'];
-                    header("location:../pages/accueil.php");
+                    if($user['admin'] == 1) {
+                        header("location:../pages/admin.php");
+                    } else {
+                        header("location:../pages/accueil.php");
+                    }
 
                 } else {
          
