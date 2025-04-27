@@ -6,14 +6,14 @@ require_once '../traitements/db.php'; // assure toi que le chemin est correct et
 
 // --- securite basique a ameliorer fortement pour une vraie application ---
 // assure toi que la session est demarree si tu utilises la securite basee sur les sessions
-/*
+
 session_start();
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
-    // rediriger vers la page de connexion ou afficher un message d erreur
-    header('Location: login.php'); // adapte le nom de ta page de connexion
+
+if (!isset($_SESSION['admin']) || $_SESSION['admin'] != 1) {
+    header('Location: accueil.php'); // redirige vers la page d accueil si pas admin
     exit;
 }
-*/
+
 // --- fin securite ---
 
 // --- recuperation des donnees ---
