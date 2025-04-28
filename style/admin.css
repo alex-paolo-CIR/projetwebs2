@@ -1,269 +1,294 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+}
+h1,
+h2 {
+  color: #ffffff;
+  border-bottom: 2px solid #c0392b;
+  padding-bottom: 8px;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+h1 {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+}
+section {
+  margin-bottom: 40px;
+  padding: 20px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background-color: #2c2c2c;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #1a1a1a;
-            color: #e0e0e0;
-        }
-        h1, h2 {
-            color: #ffffff;
-            border-bottom: 2px solid #c0392b;
-            padding-bottom: 8px;
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
-        h1 {
-             text-align: center;
-             text-transform: uppercase;
-             letter-spacing: 2px;
-             margin-bottom: 40px;
-        }
-        section {
-            margin-bottom: 40px;
-            padding: 20px;
-            border: 1px solid #444;
-            border-radius: 8px;
-            background-color: #2c2c2c;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
+/* style pour le conteneur de tableau scrollable */
+.scrollable-table-container {
+  max-height: 350px;
+  overflow-y: auto;
+  border: 1px solid #555;
+  border-radius: 4px;
+  margin-top: 15px;
+}
+/* style pour la barre de défilement webkit blink chrome edge safari */
+.scrollable-table-container::-webkit-scrollbar {
+  width: 10px;
+}
+.scrollable-table-container::-webkit-scrollbar-track {
+  background: #333;
+  border-radius: 5px;
+}
+.scrollable-table-container::-webkit-scrollbar-thumb {
+  background-color: #c0392b;
+  border-radius: 5px;
+  border: 2px solid #333;
+}
+/* style pour la barre de défilement firefox */
+.scrollable-table-container {
+  scrollbar-width: thin;
+  scrollbar-color: #c0392b #333;
+}
 
-        /* style pour le conteneur de tableau scrollable */
-        .scrollable-table-container {
-            max-height: 350px;
-            overflow-y: auto;
-            border: 1px solid #555;
-            border-radius: 4px;
-            margin-top: 15px;
-        }
-        /* style pour la barre de défilement webkit blink chrome edge safari */
-         .scrollable-table-container::-webkit-scrollbar {
-            width: 10px;
-        }
-        .scrollable-table-container::-webkit-scrollbar-track {
-            background: #333;
-            border-radius: 5px;
-        }
-        .scrollable-table-container::-webkit-scrollbar-thumb {
-            background-color: #c0392b;
-            border-radius: 5px;
-            border: 2px solid #333;
-        }
-         /* style pour la barre de défilement firefox */
-        .scrollable-table-container {
-            scrollbar-width: thin;
-            scrollbar-color: #c0392b #333;
-        }
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th,
+td {
+  border: 1px solid #555;
+  padding: 10px 12px;
+  text-align: left;
+  color: #e0e0e0;
+  vertical-align: middle;
+}
+th {
+  background-color: #3f3f3f;
+  color: #ffffff;
+  position: sticky; /* rend l en tete fixe lors du scroll dans le conteneur */
+  top: 0; /* necessaire pour sticky */
+  z-index: 1; /* pour s assurer qu il est au dessus du contenu qui defile */
+}
+tr:nth-child(even) {
+  background-color: #252525;
+}
+tr:hover {
+  background-color: #4a4a4a;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #555;
-            padding: 10px 12px;
-            text-align: left;
-            color: #e0e0e0;
-            vertical-align: middle;
-        }
-        th {
-            background-color: #3f3f3f;
-            color: #ffffff;
-            position: sticky; /* rend l en tete fixe lors du scroll dans le conteneur */
-            top: 0; /* necessaire pour sticky */
-            z-index: 1; /* pour s assurer qu il est au dessus du contenu qui defile */
-        }
-        tr:nth-child(even) { background-color: #252525; }
-        tr:hover { background-color: #4a4a4a; }
+.actions a,
+.actions button {
+  margin-right: 5px;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  display: inline-block;
+  border: none;
+  color: white;
+}
+.actions a:hover,
+.actions button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+.actions .edit {
+  background-color: #e67e22;
+} /* orange */
+.actions .delete {
+  background-color: #c0392b;
+} /* rouge sombre */
+.actions .view {
+  background-color: #2980b9;
+} /* bleu */
+.actions button.edit {
+  /* s applique specifiquement au bouton maj stock */
+  background-color: #27ae60; /* vert */
+}
 
-        .actions a, .actions button {
-            margin-right: 5px;
-            text-decoration: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            cursor: pointer;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-            display: inline-block;
-            border: none;
-            color: white;
-        }
-        .actions a:hover, .actions button:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
-        }
-        .actions .edit { background-color: #e67e22; } /* orange */
-        .actions .delete { background-color: #c0392b; } /* rouge sombre */
-        .actions .view { background-color: #2980b9; } /* bleu */
-        .actions button.edit { /* s applique specifiquement au bouton maj stock */
-             background-color: #27ae60; /* vert */
-        }
+.error {
+  color: #e74c3c;
+  background-color: rgba(192, 57, 43, 0.1);
+  border: 1px solid #c0392b;
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.stock-form {
+  display: flex;
+  align-items: center;
+} /* aligne input et bouton */
+.stock-form input[type="number"] {
+  width: 70px;
+  margin-right: 8px;
+  padding: 4px 6px;
+  background-color: #444;
+  color: #fff;
+  border: 1px solid #666;
+  border-radius: 3px;
+}
+.stock-form input[type="number"]:focus {
+  outline: none;
+  border-color: #c0392b;
+}
+.stock-form button {
+  padding: 4px 8px;
+}
+/* ajout d emoji pour admin status */
+td span.status-admin {
+  color: #2ecc71;
+  font-weight: bold;
+} /* vert pour admin oui */
+td span.status-not-admin {
+  color: #e74c3c;
+  font-weight: bold;
+} /* rouge pour admin non */
 
-        .error {
-             color: #e74c3c;
-             background-color: rgba(192, 57, 43, 0.1);
-             border: 1px solid #c0392b;
-             padding: 10px;
-             border-radius: 4px;
-             font-weight: bold;
-             margin-bottom: 15px;
-        }
-        .stock-form { display: flex; align-items: center; } /* aligne input et bouton */
-        .stock-form input[type="number"] {
-            width: 70px;
-            margin-right: 8px;
-            padding: 4px 6px;
-            background-color: #444;
-            color: #fff;
-            border: 1px solid #666;
-            border-radius: 3px;
-        }
-        .stock-form input[type="number"]:focus {
-             outline: none;
-             border-color: #c0392b;
-        }
-        .stock-form button {
-             padding: 4px 8px;
-        }
-        /* ajout d emoji pour admin status */
-        td span.status-admin { color: #2ecc71; font-weight: bold; } /* vert pour admin oui */
-        td span.status-not-admin { color: #e74c3c; font-weight: bold; } /* rouge pour admin non */
+/* --- styles pour les modals --- */
+.modal-toggle {
+  display: none; /* cache la checkbox */
+}
 
+.modal {
+  position: fixed; /* se positionne par rapport a la fenetre */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* fond semi transparent */
+  display: none; /* cache par defaut */
+  align-items: center; /* centre verticalement */
+  justify-content: center; /* centre horizontalement */
+  z-index: 1000; /* au dessus du reste */
+  opacity: 0; /* pour transition */
+  visibility: hidden; /* pour transition */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
 
-                /* --- styles pour les modals --- */
-                .modal-toggle {
-            display: none; /* cache la checkbox */
-        }
+.modal-toggle:checked + .modal {
+  display: flex; /* affiche le modal quand la checkbox est cochee */
+  opacity: 1;
+  visibility: visible;
+}
 
-        .modal {
-            position: fixed; /* se positionne par rapport a la fenetre */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* fond semi transparent */
-            display: none; /* cache par defaut */
-            align-items: center; /* centre verticalement */
-            justify-content: center; /* centre horizontalement */
-            z-index: 1000; /* au dessus du reste */
-            opacity: 0; /* pour transition */
-            visibility: hidden; /* pour transition */
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer; /* indique qu on peut cliquer pour fermer */
+  z-index: 1; /* sous le contenu mais au dessus du fond */
+}
 
-        .modal-toggle:checked + .modal {
-            display: flex; /* affiche le modal quand la checkbox est cochee */
-            opacity: 1;
-            visibility: visible;
-        }
+.modal-content {
+  position: relative; /* pour positionner le bouton close */
+  background-color: #2c2c2c;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  width: 90%;
+  max-width: 700px; /* largeur max du contenu */
+  z-index: 2; /* au dessus de l overlay */
+  max-height: 80vh; /* hauteur max pour eviter debordement */
+  display: flex; /* utiliser flex pour organiser le contenu interne */
+  flex-direction: column; /* elements internes en colonne */
+}
 
-        .modal-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer; /* indique qu on peut cliquer pour fermer */
-            z-index: 1; /* sous le contenu mais au dessus du fond */
-        }
+.modal-content h3 {
+  margin-top: 0;
+  color: #ffffff;
+  border-bottom: 1px solid #c0392b;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
 
-        .modal-content {
-            position: relative; /* pour positionner le bouton close */
-            background-color: #2c2c2c;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            width: 90%;
-            max-width: 700px; /* largeur max du contenu */
-            z-index: 2; /* au dessus de l overlay */
-            max-height: 80vh; /* hauteur max pour eviter debordement */
-            display: flex; /* utiliser flex pour organiser le contenu interne */
-            flex-direction: column; /* elements internes en colonne */
-        }
+.modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #aaa;
+  cursor: pointer;
+  line-height: 1; /* eviter hauteur excessive */
+}
+.modal-close-btn:hover {
+  color: #fff;
+}
 
-        .modal-content h3 {
-            margin-top: 0;
-            color: #ffffff;
-            border-bottom: 1px solid #c0392b;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
+/* conteneur pour le tableau dans le modal pour scroll si necessaire */
+.modal-table-container {
+  overflow-y: auto; /* scroll si contenu depasse max height */
+  max-height: 60vh; /* limite la hauteur du tableau */
+  margin-top: 10px;
+  border: 1px solid #555;
+  border-radius: 4px;
+}
 
-        .modal-close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 28px;
-            font-weight: bold;
-            color: #aaa;
-            cursor: pointer;
-            line-height: 1; /* eviter hauteur excessive */
-        }
-        .modal-close-btn:hover {
-            color: #fff;
-        }
+/* style pour le tableau dans le modal */
+.modal-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.modal-content th,
+.modal-content td {
+  border: 1px solid #555;
+  padding: 8px 10px;
+  text-align: left;
+  color: #e0e0e0;
+  vertical-align: middle;
+}
+.modal-content th {
+  background-color: #3f3f3f;
+  color: #ffffff;
+  position: sticky; /* en tete fixe DANS le scroll du modal */
+  top: 0;
+  z-index: 1;
+}
+.modal-content tr:nth-child(even) {
+  background-color: #252525;
+}
+.modal-content tr:hover {
+  background-color: #4a4a4a;
+}
 
-        /* conteneur pour le tableau dans le modal pour scroll si necessaire */
-        .modal-table-container {
-            overflow-y: auto; /* scroll si contenu depasse max height */
-            max-height: 60vh; /* limite la hauteur du tableau */
-            margin-top: 10px;
-            border: 1px solid #555;
-            border-radius: 4px;
-        }
+/* ajustement formulaire dans le modal */
+.stock-form-modal {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* aligner a gauche */
+}
+.stock-form-modal input[type="number"] {
+  width: 60px; /* un peu moins large si besoin */
+  margin-right: 5px;
+  padding: 4px;
+}
+.stock-form-modal button {
+  padding: 4px 8px;
+  font-size: 0.85em; /* bouton un peu plus petit */
+}
 
-         /* style pour le tableau dans le modal */
-        .modal-content table {
-             width: 100%;
-             border-collapse: collapse;
-        }
-         .modal-content th, .modal-content td {
-            border: 1px solid #555;
-            padding: 8px 10px;
-            text-align: left;
-            color: #e0e0e0;
-            vertical-align: middle;
-         }
-         .modal-content th {
-             background-color: #3f3f3f;
-             color: #ffffff;
-             position: sticky; /* en tete fixe DANS le scroll du modal */
-             top: 0;
-             z-index: 1;
-         }
-         .modal-content tr:nth-child(even) { background-color: #252525; }
-         .modal-content tr:hover { background-color: #4a4a4a; }
-
-        /* ajustement formulaire dans le modal */
-        .stock-form-modal {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start; /* aligner a gauche */
-        }
-        .stock-form-modal input[type="number"] {
-             width: 60px; /* un peu moins large si besoin */
-             margin-right: 5px;
-             padding: 4px;
-        }
-        .stock-form-modal button {
-             padding: 4px 8px;
-             font-size: 0.85em; /* bouton un peu plus petit */
-        }
-
-        /* style pour le bouton ouvrir modal */
-        label.actions.view {
-            cursor: pointer;
-             display: inline-block; /* important pour padding etc */
-            background-color: #2980b9; /* style de bouton */
-             color: white;
-             padding: 5px 10px;
-             border-radius: 4px;
-             font-size: 0.9em;
-             transition: background-color 0.2s ease, transform 0.1s ease;
-        }
-         label.actions.view:hover {
-             opacity: 0.9;
-             transform: translateY(-1px);
-         }
-
-
+/* style pour le bouton ouvrir modal */
+label.actions.view {
+  cursor: pointer;
+  display: inline-block; /* important pour padding etc */
+  background-color: #2980b9; /* style de bouton */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+label.actions.view:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
