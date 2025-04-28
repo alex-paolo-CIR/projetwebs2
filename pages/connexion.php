@@ -27,9 +27,9 @@
                 </div>
 
                 <div class="navbar-menu">
-                    <a href="accueil.html">ACCUEIL</a>
-                    <a href="shop.html">BOUTIQUE</a>
-                    <a href="contact.html">CONTACT</a>
+                    <a href="accueil.php">ACCUEIL</a>
+                    <a href="shop.php">BOUTIQUE</a>
+                    <a href="contact.php">CONTACT</a>
                 </div>
             </nav>
 
