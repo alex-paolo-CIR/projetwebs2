@@ -3,7 +3,7 @@
 <nav class="navbar">
     <div class="utils-co">
         <?php if (isset($_SESSION["authentifie"]) && $_SESSION["authentifie"] === true): ?>
-            <a href="connexion.php">
+            <a href="profil.php">
                 <img id="connexion" class="icones" src="../media/icon-account.png" alt="icon-account">
             </a>
             <a href="../traitements/logout.php" class="deco" style="
@@ -16,7 +16,6 @@
                 </svg>
             </a>
 
-            <!-- if admin == 1 bouton page admin -->
             <?php if (isset($_SESSION["admin"]) && $_SESSION["admin"] == 1): ?>
                 <a href="admin.php" class="admin-button">Admin</a>
             <?php endif; ?>

@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+if (isset($_SESSION["authentifie"]) && $_SESSION["authentifie"] === true) {
+    header("Location: profil.php");
+    exit();
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -49,11 +60,6 @@
                     }
                 }
             ?>
-
-
-
-
-
 
 
 
