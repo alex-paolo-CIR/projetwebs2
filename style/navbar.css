@@ -165,12 +165,11 @@ header {
 }
 
 .navbar-menu a.active {
-  /* bold and yellow */
   font-weight: bold;
   color: yellow;
 }
 
-/* Médias queries pour les écrans de petite taille */
+/* Medias queries pour les écrans de petite taille */
 @media (max-width: 700px) {
   .utils-co {
     grid-area: utils;

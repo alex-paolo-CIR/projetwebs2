@@ -3,11 +3,11 @@ if (isset($_POST["Envoyer"])) {
     try {
         require("db.php");
 
-        // verifier si la méthode est bien POST
+        
         if ($_SERVER["REQUEST_METHOD"] != "POST")
             header("location:../pages/admin.php");
 
-        // verifier si les champs obligatoires sont remplis
+        // verif si remplis
         if (
             empty($_POST["nom"]) || 
             empty($_POST["prix"]) || 

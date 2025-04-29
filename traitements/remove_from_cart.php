@@ -9,7 +9,7 @@ if (isset($_POST['product_id'])) {
     }
 }
 
-// Redirige après suppression
+
 header('Location: ../pages/shop.php');
 exit();
 ?>

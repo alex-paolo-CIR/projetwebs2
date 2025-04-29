@@ -370,8 +370,8 @@ label.actions.view:hover {
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
   
   /* Centrage horizontal */
-  margin: 0 auto; /* Applique un centrage automatique de gauche et droite */
-  display: block; /* Assure que l'élément est un bloc pour que le margin fonctionne */
+  margin: 0 auto; 
+  display: block; 
 }
 
 

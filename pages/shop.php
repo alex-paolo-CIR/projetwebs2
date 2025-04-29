@@ -8,7 +8,7 @@
 try {
     require("../traitements/db.php");
 
-    // Récupérer tous les produits
+    // Recup produits
     $req = "SELECT * FROM produits";
     $stmt = $conn->prepare($req);
     $stmt->execute();
@@ -49,11 +49,11 @@ try {
                 position: fixed;
                 top: 20px;
                 right: 20px;
-                background-color: rgba(0, 128, 0, 0.9); /* Vert foncé transparent */
+                background-color: rgba(0, 128, 0, 0.9); 
                 color: #ffffff;
                 padding: 15px 25px;
                 border-radius: 12px;
-                border: 2px solid #4CAF50; /* Vert clair */
+                border: 2px solid #4CAF50; 
                 box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
                 font-family: "Arial", sans-serif;
                 font-size: 16px;

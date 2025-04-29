@@ -111,9 +111,9 @@
   display: flex;
   margin: 10px;
   font-size: calc(0.5em + 1vw);
-  overflow: visible; /* permet au texte de déborder s'il dépasse */
-  white-space: normal; /* permet au texte de revenir à la ligne */
-  word-wrap: break-word; /* permet de couper les mots trop longs*/
+  overflow: visible; 
+  white-space: normal; 
+  word-wrap: break-word; 
 }
 
 .image {
