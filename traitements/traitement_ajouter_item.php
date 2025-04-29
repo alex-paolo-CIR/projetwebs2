@@ -21,7 +21,12 @@ if (isset($_POST["Envoyer"])) {
         $description = isset($_POST["description"]) ? $_POST["description"] : null;
         $prix = $_POST["prix"];
         $categorie_id = $_POST["categorie_id"];
-        $a_des_tailles = isset($_POST["a_des_tailles"]) ? 1 : 0;
+
+        if($_POST["a_des_tailles"] == "1"){
+            $a_des_tailles = 1;
+        }else{
+            $a_des_tailles = 0;
+        }
 
         function valider_Photo($fichier) {
             if (!isset($fichier['name']) || $fichier['error'] !== UPLOAD_ERR_OK) {
