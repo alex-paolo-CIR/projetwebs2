@@ -46,7 +46,7 @@ if (isset($_SESSION["authentifie"]) && $_SESSION["authentifie"] === true) {
 
 
             <?php
-                // Vérification des erreurs dans l'URL
+                // verif des erreurs dans l'URL
                 if (isset($_GET['error'])) {
                     $error = $_GET['error'];
                     $errorMessage = '';

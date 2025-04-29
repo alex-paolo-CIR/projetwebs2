@@ -127,29 +127,99 @@ if (empty($success_message) && empty($error_message) && $_SERVER['REQUEST_METHOD
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier Utilisateur - Administration</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; margin: 20px; background-color: #1a1a1a; color: #e0e0e0; }
-        .container { max-width: 600px; margin: auto; padding: 20px; background-color: #2c2c2c; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
-        h1 { color: #fff; border-bottom: 2px solid #c0392b; padding-bottom: 8px; text-align: center; margin-bottom: 20px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; color: #ccc; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #444;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
         input[type="text"], input[type="email"], input[type="password"] {
-            width: 95%;
+            width: 100%;
             padding: 10px;
             margin-bottom: 15px;
-            border: 1px solid #555;
+            border: 1px solid #ccc;
             border-radius: 4px;
-            background-color: #444;
-            color: #fff;
+            background-color: #f9f9f9;
+            color: #333;
         }
-        input[type="checkbox"] { margin-right: 5px; vertical-align: middle;}
-        .checkbox-label { display: inline-block; margin-bottom: 15px; color: #ccc; }
-        button { padding: 10px 20px; background-color: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1em; }
-        button:hover { background-color: #2ecc71; }
-        .back-link { display: inline-block; margin-top: 15px; color: #3498db; text-decoration: none; }
-        .back-link:hover { text-decoration: underline; }
-        .error-message { background-color: rgba(192, 57, 43, 0.2); border: 1px solid #c0392b; color: #e74c3c; padding: 10px; border-radius: 4px; margin-bottom: 15px; }
-        .success-message { background-color: rgba(39, 174, 96, 0.2); border: 1px solid #27ae60; color: #2ecc71; padding: 10px; border-radius: 4px; margin-bottom: 15px; }
-        .form-error { color: #e74c3c; font-size: 0.9em; margin-top: -10px; margin-bottom: 10px; display: block;}
-        input.error-field { border-color: #c0392b; }
+        input[type="checkbox"] {
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        .checkbox-label {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .success-message {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .form-error {
+            color: #dc3545;
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        input.error-field {
+            border-color: #dc3545;
+        }
     </style>
 </head>
 <body>
