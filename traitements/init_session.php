@@ -7,6 +7,10 @@ if (isset($_SESSION["authentifie"]) && $_SESSION["authentifie"] === true) {
     return;
 }
 
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array(); // PAAAnier vide lol pck en gros enfaite pour de vrai pour tout te dire ca creer un panier vide pck en gros bah quand t'arrive le panier est vide fin bref meow
+}
+
 
 if (!isset($_SESSION['authentifie']) && isset($_COOKIE['remember_token'])) {
     $token = $_COOKIE['remember_token'];

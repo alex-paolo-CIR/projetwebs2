@@ -3,6 +3,7 @@
 ?>
 
 
+
 <?php
 try {
     require("../traitements/db.php");
@@ -16,6 +17,9 @@ try {
     die("Erreur : " . $e->getMessage());
 }
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -39,11 +43,57 @@ try {
         }
         <?php endforeach; ?>
 
+
+
+        .notif {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background-color: rgba(0, 128, 0, 0.9); /* Vert foncé transparent */
+                color: #ffffff;
+                padding: 15px 25px;
+                border-radius: 12px;
+                border: 2px solid #4CAF50; /* Vert clair */
+                box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+                font-family: "Arial", sans-serif;
+                font-size: 16px;
+                z-index: 1000;
+                animation: slideDown 0.5s ease-out, fadeOut 1s ease-out 3s forwards;
+                }
+
+                @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                }
+
+                @keyframes fadeOut {
+                to {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                    visibility: hidden;
+                }
+                }
+
     </style>
+    
 </head>
 
 <body>
+
+
 <?php require_once 'navbar.php'; ?>
+<?php if (isset($_SESSION['notification'])): ?>
+    <div class="notif">
+        <?= htmlspecialchars($_SESSION['notification']) ?>
+    </div>
+    <?php unset($_SESSION['notification']); ?>
+<?php endif; ?>
 
     <div class="conteneur-shop">
         <div class="shop-grid">
@@ -87,10 +137,14 @@ try {
                                 <label for="size-<?= strtolower($size) ?>-<?= $index + 1 ?>" class="size-option"><?= $size ?></label>
                             <?php endforeach; ?>
                         </div>
-                        <button class="add-to-cart">
-                            <span class="button-text">Ajouter au panier</span>
-                            <img class="check-icon" src="../media/icon-check.png" alt="Check">
-                        </button>
+                        <!-- Bouton ajouter au panier  -->
+                        <form method="POST" action="../traitements/add_to_cart.php">
+                            <input type="hidden" name="product_id" value="<?= $produit['id'] ?>">
+                            <button type="submit" class="add-to-cart">
+                                <span class="button-text">Ajouter au panier</span>
+                                <img class="check-icon" src="../media/icon-check.png" alt="Check">
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -101,3 +155,5 @@ try {
 
 </body>
 </html>
+
+
