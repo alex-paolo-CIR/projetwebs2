@@ -35,7 +35,7 @@
 
 
             <?php
-                // Vérification des erreurs dans l'URL
+                // Verif erreurs l'URL
                 if (isset($_GET['error'])) {
                     $error = $_GET['error'];
                     $errorMessage = '';

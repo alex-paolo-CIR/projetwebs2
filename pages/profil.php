@@ -5,13 +5,10 @@ if (!isset($_SESSION['authentifie']) || $_SESSION['authentifie'] !== true) {
     exit();
 }
 
-// userid
 $user_id = $_SESSION['id_user'];
-
-// Connexion à la base de données
 require_once '../traitements/db.php';
 
-// Récupération des informations de l'utilisateur
+// info de l user 
 $stmt = $conn->prepare('SELECT * FROM utilisateurs WHERE id = :id');
 $stmt->execute(['id' => $user_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -22,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = htmlspecialchars($_POST['email']);
     $password = !empty($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : $user['password'];
 
-    // Mise à jour des informations de l'utilisateur
+    // MAJ info user
     $updateStmt = $conn->prepare('UPDATE utilisateurs SET nom = :nom, prenom = :prenom, email = :email, password = :password WHERE id = :id');
     $updateStmt->execute([
         'nom' => $nom,
@@ -32,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'id' => $user_id
     ]);
 
-    // Actualisation des données utilisateur
+    // refresh info user
     header('Location: profil.php');
     exit();
 }

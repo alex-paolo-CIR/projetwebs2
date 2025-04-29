@@ -147,7 +147,7 @@ if (isset($stock) && is_array($stock)) {
                 </tbody>
             </table>
         </div> <!-- fin du conteneur scrollable -->
-        <!-- <a href="create_user.php" class="button add-button">Ajouter un utilisateur</a> -->
+
     </section>
 
     <section id="orders">
@@ -277,7 +277,7 @@ if (isset($stock) && is_array($stock)) {
                 </div> <!-- fin modal content -->
             </div> <!-- fin modal -->
         <?php endforeach; ?>
-         <!-- <a href="add_stock.php">Ajouter du stock globalement ou nouveau produit</a> -->
+
     </section>
 
     <section id="ajouter_item">
@@ -320,7 +320,7 @@ if (isset($stock) && is_array($stock)) {
 
 
 <?php
-              // Vérification des erreurs dans l'URL
+              // Verif URL
               if (isset($_GET['success'])) {
                   $success = $_GET['success'];
                   $successMessage = '';
