@@ -347,3 +347,75 @@ label.actions.view:hover {
 .link-back:hover {
   text-decoration: underline;
 }
+
+
+/* --- styles pour la page ajouter_item --- */
+
+#ajouter_item {
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+#ajouter_item form {
+  width: 100%;
+  max-width: 450px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  border-radius: 12px;
+  padding: 20px 25px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+  
+  /* Centrage horizontal */
+  margin: 0 auto; /* Applique un centrage automatique de gauche et droite */
+  display: block; /* Assure que l'élément est un bloc pour que le margin fonctionne */
+}
+
+
+#ajouter_item label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: white;
+}
+
+#ajouter_item input[type="text"],
+#ajouter_item input[type="number"],
+#ajouter_item input[type="file"],
+#ajouter_item select,
+#ajouter_item textarea {
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 15px;
+  background-color: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+#ajouter_item textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+#ajouter_item button {
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#ajouter_item button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
