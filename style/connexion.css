@@ -106,54 +106,57 @@
 }
 
 .np .input-box {
-  margin-bottom: 0%
+  margin-bottom: 0%;
 }
 
 .checkbox {
-  margin: 0px 0px 10px 0px;
+  margin: 0px 0px 20px 0px;
+  display: flex;
+  color: white;
 }
 
+.checkbox input {
+  margin-right: 10px;
+  cursor: pointer;
+  accent-color: rgb(255, 238, 0);
+}
 
-    .error-message {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background-color: rgba(0, 0, 0, 0.8); /* Fond noir semi-transparent */
-        color: #ffffff; /* Texte blanc */
-        padding: 15px 25px;
-        border-radius: 12px;
-        border: 2px solid #ff0000; /* Jaune doré */
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); /* Légère lumière blanche */
-        font-family: 'Arial', sans-serif;
-        font-size: 16px;
-        z-index: 1000;
-        animation: slideDown 0.5s ease-out, fadeOut 1s ease-out 3s forwards;
-    }
+.error-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.8); /* Fond noir semi-transparent */
+  color: #ffffff; /* Texte blanc */
+  padding: 15px 25px;
+  border-radius: 12px;
+  border: 2px solid #ff0000; /* Jaune doré */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); /* Légère lumière blanche */
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  z-index: 1000;
+  animation: slideDown 0.5s ease-out, fadeOut 1s ease-out 3s forwards;
+}
 
-    /* Animation d'arrivée */
-    @keyframes slideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
+/* Animation d'arrivée */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    /* Animation de disparition */
-    @keyframes fadeOut {
-        to {
-            opacity: 0;
-            transform: translateY(-20px);
-            visibility: hidden;
-        }
-    }
-
-
-
-
+/* Animation de disparition */
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+    visibility: hidden;
+  }
+}
 
 /* ---------- responsive ---------- */
 /* pour ordi */

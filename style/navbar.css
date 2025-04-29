@@ -9,16 +9,15 @@
   z-index: 1000;
   padding: 10px 20px;
 
-
   display: grid;
   width: 100%;
-  grid-template-columns: 1fr 1fr 1fr; 
-  grid-template-rows: 1fr 1fr; 
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   grid-template-areas:
     "utils-co logo utils-ca"
     "navbar-menu navbar-menu navbar-menu";
   align-items: center;
-  justify-items: center; 
+  justify-items: center;
 }
 
 .navbar .logo {
@@ -111,8 +110,6 @@ header {
   color: yellow;
 }
 
-
-
 /* Médias queries pour les écrans de petite taille */
 @media (max-width: 700px) {
   .utils-co {
@@ -147,4 +144,3 @@ header {
     align-items: center;
   }
 }
-

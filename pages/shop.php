@@ -30,6 +30,7 @@ try {
     <link rel="stylesheet" type="text/css" href="../style/shop.css">
 
 
+    <style>
         <?php foreach ($produits as $index => $produit): 
             $image_hover = htmlspecialchars($produit['image_hover']);
         ?>
@@ -38,6 +39,7 @@ try {
         }
         <?php endforeach; ?>
 
+    </style>
 </head>
 
 <body>

@@ -28,6 +28,12 @@
                     $_SESSION['authentifie'] = TRUE;
                     $_SESSION['admin'] = $user['admin'];
                     $_SESSION['date_creation'] = $user['date_creation'];
+
+                    if (isset($_POST['remember-me'])) {
+                        setcookie('user_id', $user['id'], time() + (30 * 24 * 60 * 60), "/"); // Cookie valide 30 jours
+                    }
+
+                    
                     if($user['admin'] == 1) {
                         header("location:../pages/admin.php");
                     } else {
