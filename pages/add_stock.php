@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once '../traitements/db.php'; // Adjust path if needed
+require_once '../traitements/db.php'; 
 
-// Security: Check if user is admin
+// Securité
 if (!isset($_SESSION['admin']) || $_SESSION['admin'] != 1) {
     header('Location: accueil.php?error=unauthorized');
     exit;
@@ -13,33 +13,35 @@ $success_message = '';
 $products = [];
 $sizes = [];
 
-// --- Fetch Products and Sizes for Dropdowns ---
+
 try {
     $stmt_products = $conn->query("SELECT id, nom FROM produits ORDER BY nom");
     $products = $stmt_products->fetchAll(PDO::FETCH_ASSOC);
 
-    $stmt_sizes = $conn->query("SELECT id, nom FROM tailles ORDER BY nom"); // Assuming 'nom' for size makes sense, or order by id
+    $stmt_sizes = $conn->query("SELECT id, nom FROM tailles ORDER BY nom"); 
     $sizes = $stmt_sizes->fetchAll(PDO::FETCH_ASSOC);
 
 } catch (\PDOException $e) {
     $error_message = "Erreur lors de la récupération des données pour le formulaire: " . $e->getMessage();
-    // Log the detailed error: error_log($error_message);
-    $error_message = "Erreur lors de la récupération des données. Impossible d'afficher le formulaire."; // User-friendly message
+    
+    $error_message = "Erreur lors de la récupération des données. Impossible d'afficher le formulaire."; 
 }
 
 
-// --- Handle Form Submission ---
+
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $produit_id = filter_input(INPUT_POST, 'produit_id', FILTER_VALIDATE_INT);
     $taille_id = filter_input(INPUT_POST, 'taille_id', FILTER_VALIDATE_INT);
     $quantite = filter_input(INPUT_POST, 'quantite', FILTER_VALIDATE_INT, ["options" => ["min_range" => 0]]);
 
-    // Basic validation
+    // Validation
     if (!$produit_id || !$taille_id || $quantite === false) {
         $error_message = "Veuillez sélectionner un produit, une taille et entrer une quantité valide (0 ou plus).";
     } else {
         try {
-            // Check if this product/size combination already exists in stock_produits
+            // Verif si produit/taille existe déja dans stockproduits
             $check_sql = "SELECT id FROM stock_produits WHERE produit_id = :produit_id AND taille_id = :taille_id";
             $check_stmt = $conn->prepare($check_sql);
             $check_stmt->bindParam(':produit_id', $produit_id, PDO::PARAM_INT);
@@ -48,10 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $existing_stock = $check_stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($existing_stock) {
-                // Entry already exists - inform user to update instead
+
                 $error_message = "Cette combinaison produit/taille existe déjà dans le stock. Utilisez 'Gérer Stock' sur la page admin pour mettre à jour la quantité.";
             } else {
-                // Combination doesn't exist, proceed with INSERT
                 $insert_sql = "INSERT INTO stock_produits (produit_id, taille_id, quantite) VALUES (:produit_id, :taille_id, :quantite)";
                 $insert_stmt = $conn->prepare($insert_sql);
                 $insert_stmt->bindParam(':produit_id', $produit_id, PDO::PARAM_INT);
@@ -60,17 +61,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 if ($insert_stmt->execute()) {
                     $success_message = "Nouvelle entrée de stock ajoutée avec succès !";
-                    // Optionally redirect back to admin panel after success
-                    // header('Location: admin.php?status=stock_added#stock');
-                    // exit;
-                    // Or just display the success message on this page
                 } else {
                     $error_message = "Erreur lors de l'ajout de l'entrée de stock.";
                 }
             }
         } catch (\PDOException $e) {
             error_log("Add Stock Error: " . $e->getMessage());
-            if ($e->getCode() == '23000') { // Catch potential unique constraint violation if added to DB
+            if ($e->getCode() == '23000') { 
                  $error_message = "Erreur : Cette combinaison produit/taille existe déjà.";
             } else {
                 $error_message = "Erreur base de données lors de l'ajout du stock.";
@@ -85,11 +82,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/admin.css"> <!-- Adjust path if needed -->
-    <link rel="stylesheet" href="../style/forms.css"> <!-- Create a simple CSS file for forms -->
+    <link rel="stylesheet" href="../style/admin.css">
+    <link rel="stylesheet" href="../style/forms.css"> 
     <title>Ajouter une Entrée de Stock - Admin</title>
     <style>
-        /* Add some basic styling for forms if forms.css doesn't exist */
         .form-container { max-width: 600px; margin: 20px auto; padding: 20px; background: #f4f4f4; border-radius: 8px; }
         .form-container h1 { text-align: center; color: #333; }
         .form-group { margin-bottom: 15px; }
@@ -117,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p class="message success"><?php echo htmlspecialchars($success_message); ?></p>
         <?php endif; ?>
 
-        <?php if (!empty($products) && !empty($sizes)): // Only show form if data was fetched ?>
+        <?php if (!empty($products) && !empty($sizes)): ?>
             <form action="add_stock.php" method="POST">
                 <div class="form-group">
                     <label for="produit_id">Produit :</label>
@@ -152,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <button type="submit">Ajouter au Stock</button>
                 </div>
             </form>
-        <?php elseif (empty($error_message)) : // If no products/sizes but no fetch error ?>
+        <?php elseif (empty($error_message)) : ?>
              <p class="message error">Impossible d'ajouter du stock : Aucun produit ou taille n'a été trouvé dans la base de données.</p>
         <?php endif; ?>
          <a href="admin.php#stock" class="link-back" style="display: block; text-align: center; margin-top: 20px;">« Retour au Panneau Admin</a>
