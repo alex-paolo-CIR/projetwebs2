@@ -5,7 +5,7 @@ if (isset($_POST["Envoyer"])) {
 
         // verifier si la méthode est bien POST
         if ($_SERVER["REQUEST_METHOD"] != "POST")
-            header("location:../pages/ajouter_item.php");
+            header("location:../pages/admin.php");
 
         // verifier si les champs obligatoires sont remplis
         if (
@@ -13,7 +13,7 @@ if (isset($_POST["Envoyer"])) {
             empty($_POST["prix"]) || 
             empty($_POST["categorie_id"])
         ) {
-            header("location:../pages/ajouter_item.php?error=empty");
+            header("location:../pages/admin.php?error=empty");
             exit();
         }
 
@@ -40,12 +40,12 @@ if (isset($_POST["Envoyer"])) {
         $vPhotoHover = $_FILES['image_hover'];
         
         if (!valider_Photo($vPhoto)) {
-            header("location:../pages/ajouter_item.php?error=imageclassic");
+            header("location:../pages/admin.php?error=imageclassic");
             exit();
         }
         
         if (!valider_Photo($vPhotoHover)) {
-            header("location:../pages/ajouter_item.php?error=imagehover");
+            header("location:../pages/admin.php?error=imagehover");
             exit();
         }
 
@@ -103,7 +103,7 @@ if (isset($_POST["Envoyer"])) {
 
         // fermer la connexion et rediriger
         $conn = NULL;
-        header("location:../pages/ajouter_item.php?success=1");
+        header("location:../pages/admin.php?success=1");
 
     } catch (Exception $e) {
         die("Erreur : " . $e->getMessage());

@@ -1,4 +1,18 @@
 <?php
+
+	// Fonctions pour valider les champs
+	function nettoyer_donnees($donnees){
+		$donnees = trim($donnees);
+		$donnees = stripslashes($donnees);
+		$donnees = htmlspecialchars($donnees);
+		return $donnees;
+	}
+	
+	function valider_NomPrenom($NomPrenom){
+		return preg_match("/^[a-zA-Z\s'-]{1,40}$/",$NomPrenom);
+	}
+	
+
 	if(isset($_POST["Ajouter"])){
 		try{
 			require("db.php");               
@@ -25,10 +39,15 @@
 
 
 			else {
-				$nom = $_POST["nom"];
-				$prenom = $_POST["prenom"];
-				$email = $_POST["email"];
-				$password = password_hash($_POST["password"], PASSWORD_BCRYPT);
+				$nom = nettoyer_donnees($_POST["nom"]);
+				$prenom = nettoyer_donnees($_POST["prenom"]);
+				$email = nettoyer_donnees($_POST["email"]);
+				$password = password_hash(nettoyer_donnees($_POST["password"]), PASSWORD_BCRYPT);
+
+				if (valider_NomPrenom($nom) == 0 || valider_NomPrenom($prenom) == 0) {
+					header('location:../pages/inscription.php?error=nom_prenom_invalide');
+					exit;
+				}
 
 				$reqPrep= "INSERT INTO utilisateurs VALUES (NULL, :nom, :prenom, :email, :password, TRUE, FALSE, CURRENT_TIMESTAMP)";
 

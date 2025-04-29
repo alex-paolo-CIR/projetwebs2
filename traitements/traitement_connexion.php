@@ -1,4 +1,16 @@
 <?php
+
+
+	// Fonctions pour valider les champs
+	function nettoyer_donnees($donnees){
+		$donnees = trim($donnees);
+		$donnees = stripslashes($donnees);
+		$donnees = htmlspecialchars($donnees);
+		return $donnees;
+	}
+	
+
+
     if (isset($_POST["Connexion"])) {
         try {
             require("db.php");
@@ -9,8 +21,8 @@
             if (empty($_POST['email']) || empty($_POST['password']))
                 header('location:../pages/connexion.php?error=empty');
 
-            $email = $_POST["email"];
-            $password = $_POST["password"];
+            $email = nettoyer_donnees($_POST["email"]);
+            $password = nettoyer_donnees($_POST["password"]);
 
             $reqPrep = "SELECT * FROM utilisateurs WHERE email = :email";
             $req1 = $conn->prepare($reqPrep);
