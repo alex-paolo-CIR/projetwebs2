@@ -1,0 +1,106 @@
+/* General styles for the profile page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Container for the profile content */
+.profile-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Profile header */
+.profile-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.profile-header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+    object-fit: cover;
+}
+
+.profile-header h1 {
+    font-size: 24px;
+    margin: 0;
+    color: #444;
+}
+
+/* Profile details */
+.profile-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.profile-details .detail-item {
+    flex: 1 1 calc(50% - 20px);
+    background-color: #f9f9fc;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.detail-item h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.detail-item p {
+    margin: 0;
+    font-size: 16px;
+    color: #666;
+}
+
+/* Buttons */
+.profile-actions {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.profile-actions button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile-actions button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .profile-details .detail-item {
+        flex: 1 1 100%;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profile-header img {
+        margin-bottom: 15px;
+    }
+}
