@@ -33,7 +33,39 @@
                 </div>
             </nav>
 
+
+            <?php
+                // Vérification des erreurs dans l'URL
+                if (isset($_GET['error'])) {
+                    $error = $_GET['error'];
+                    $errorMessage = '';
+
+                    if ($error == 'empty') {
+                        $errorMessage = "Veuillez remplir tous les champs.";
+                    } elseif ($error == 'mdp') {
+                        $errorMessage = "Mot de passe incorrect.";
+                    } elseif ($error == 'email') {
+                        $errorMessage = "Email invalide";
+                    } elseif ($error == 'nom_prenom_invalide') {
+                        $errorMessage = "Nom / Prénom invalide";
+                    };
+                }
+            ?>
+
+
+
+
             <div class="conteneur-login-global">
+
+
+            <!-- Div contenant le message d'erreur si nécessaire -->
+            <?php if (!empty($errorMessage)): ?>
+                            <div class="error-message">
+                                <?php echo $errorMessage; ?>
+                            </div>
+            <?php endif; ?>
+
+
                 <div class="conteneur-login">
                     <form action="../traitements/traitement_inscription.php" method="post">
 
