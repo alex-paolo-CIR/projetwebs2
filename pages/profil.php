@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../media/favicon.ico">
     <link rel="stylesheet" href="../style/profil.css">
     <title>Profil</title>
 </head>
@@ -56,9 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="prenom">Prénom</label>
             <input type="text" id="prenom" name="prenom" value="<?= htmlspecialchars($user['prenom']) ?>" required>
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
-
             <label for="password">Mot de passe (laisser vide pour ne pas changer)</label>
             <input type="password" id="password" name="password">
 
@@ -67,3 +65,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </body>
 </html>
+
