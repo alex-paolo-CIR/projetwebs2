@@ -47,7 +47,7 @@ if (isset($_POST["Ajouter"])) {
             exit;
         }
 
-        $stmt = $conn->prepare("INSERT INTO utilisateurs (nom, prenom, email, password, remember_token, actif, admin, date_creation) VALUES (:nom, :prenom, :email, :password, NULL, TRUE, FALSE, CURRENT_TIMESTAMP)");
+        $stmt = $conn->prepare("INSERT INTO utilisateurs (nom, prenom, email, password, remember_token, authentifie, admin, date_creation) VALUES (:nom, :prenom, :email, :password, NULL, TRUE, FALSE, CURRENT_TIMESTAMP)");
         $stmt->execute([
             ':nom' => $nom,
             ':prenom' => $prenom,
