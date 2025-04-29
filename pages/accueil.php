@@ -1,5 +1,12 @@
 <?php
   require("../traitements/init_session.php");
+
+  // detecter si la personne a des cookies et mettre un message en gros en haut en rouge
+
+  if (isset($_COOKIE['user_id'])) {
+    echo '<script>alert("Vous avez été connecté automatiquement grâce à vos cookies !")</script>';
+  }
+  
 ?>
 
 <!DOCTYPE html>

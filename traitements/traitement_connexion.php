@@ -1,57 +1,54 @@
 <?php
-    if (isset($_POST["Connexion"])) {
-        try {
-            require("db.php");
+if (isset($_POST["Connexion"])) {
+    try {
+        require("db.php");
 
-            if (!isset($_POST['Connexion']) || $_SERVER['REQUEST_METHOD'] != 'POST')
-                header('location:../pages//connexion.php');
+        if (empty($_POST['email']) || empty($_POST['password'])) {
+            header('location:../pages/connexion.php?error=empty');
+            exit();
+        }
 
-            if (empty($_POST['email']) || empty($_POST['password']))
-                header('location:../pages/connexion.php?error=empty');
+        $email = $_POST["email"];
+        $password = $_POST["password"];
 
-            $email = $_POST["email"];
-            $password = $_POST["password"];
+        $req = $conn->prepare("SELECT * FROM utilisateurs WHERE email = :email");
+        $req->execute([':email' => $email]);
+        $user = $req->fetch(PDO::FETCH_ASSOC);
 
-            $reqPrep = "SELECT * FROM utilisateurs WHERE email = :email";
-            $req1 = $conn->prepare($reqPrep);
-            $req1->execute(array(':email' => $email));
-            $user = $req1->fetch(PDO::FETCH_ASSOC);
+        if ($user && password_verify($password, $user['password'])) {
+            session_start();
+            $_SESSION['id_user'] = $user['id'];
+            $_SESSION['nom'] = $user['nom'];
+            $_SESSION['prenom'] = $user['prenom'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['authentifie'] = TRUE;
+            $_SESSION['admin'] = $user['admin'];
+            $_SESSION['date_creation'] = $user['date_creation'];
 
-            if ($user) {
-                if (password_verify($password, $user['password'])) {
-    
-                    session_start();
-                    $_SESSION['id_user'] = $user['id'];
-                    $_SESSION['nom'] = $user['nom'];
-                    $_SESSION['prenom'] = $user['prenom'];
-                    $_SESSION['email'] = $user['email'];
-                    $_SESSION['authentifie'] = TRUE;
-                    $_SESSION['admin'] = $user['admin'];
-                    $_SESSION['date_creation'] = $user['date_creation'];
+            
+            if (isset($_POST['remember-me'])) {
+                $token = bin2hex(random_bytes(32));
+                $stmt = $conn->prepare("UPDATE utilisateurs SET remember_token = :token WHERE id = :id");
+                $stmt->execute([':token' => $token, ':id' => $user['id']]);
 
-                    if (isset($_POST['remember-me'])) {
-                        setcookie('user_id', $user['id'], time() + (30 * 24 * 60 * 60), "/"); // Cookie valide 30 jours
-                    }
-
-                    
-                    if($user['admin'] == 1) {
-                        header("location:../pages/admin.php");
-                    } else {
-                        header("location:../pages/accueil.php");
-                    }
-
-                } else {
-         
-                    header('location:../pages/connexion.php?error=mdp');
-                }
-            } else {
-         
-                header('location:../pages/connexion.php?error=email');
+                setcookie('remember_token', $token, [
+                    'expires' => time() + (30 * 24 * 60 * 60),
+                    'path' => '/',
+                    'secure' => true,
+                    'httponly' => true,
+                    'samesite' => 'Strict'
+                ]);
             }
 
-            $conn = NULL;
-        } catch (Exception $e) {
-            die("Erreur : " . $e->getMessage());
+            header("location:../pages/" . ($user['admin'] ? "admin.php" : "accueil.php"));
+            exit();
+        } else {
+            header('location:../pages/connexion.php?error=' . ($user ? 'mdp' : 'email'));
+            exit();
         }
+
+    } catch (Exception $e) {
+        die("Erreur : " . $e->getMessage());
     }
+}
 ?>
