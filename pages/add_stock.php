@@ -68,21 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../style/admin.css">
     <link rel="stylesheet" href="../style/forms.css">
     <title>Ajouter une Entrée de Stock - Admin</title>
-    <style>
-        .form-container { max-width: 600px; margin: 20px auto; padding: 20px; background: #f4f4f4; border-radius: 8px; }
-        .form-container h1 { text-align: center; color: #333; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; color: #555; }
-        .form-group select, .form-group input[type="number"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        .message { padding: 10px; margin-bottom: 15px; border-radius: 4px; }
-        .message.error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-        .message.success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .form-actions { text-align: center; }
-        .form-actions button { padding: 10px 20px; background-color: #5cb85c; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1em; }
-        .form-actions button:hover { background-color: #4cae4c; }
-        .link-back { display: inline-block; margin-top: 15px; color: #337ab7; text-decoration: none; }
-        .link-back:hover { text-decoration: underline; }
-    </style>
 </head>
 <body>
     <div class="form-container">

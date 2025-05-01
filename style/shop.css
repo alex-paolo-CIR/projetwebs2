@@ -406,3 +406,39 @@ input[type="radio"]:checked + .size-option::before {
 input[type="radio"]:checked + .size-option::after {
   background-color: transparent;
 }
+
+.notif {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0, 128, 0, 0.9);
+    color: #ffffff;
+    padding: 15px 25px;
+    border-radius: 12px;
+    border: 2px solid #4CAF50;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    z-index: 1000;
+    animation: slideDown 0.5s ease-out, fadeOut 1s ease-out 3s forwards;
+}
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+        visibility: hidden;
+    }
+}
+.size-selector input[type="radio"] {
+    display: none;
+}

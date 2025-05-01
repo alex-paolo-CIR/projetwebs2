@@ -4,6 +4,8 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 
+<linl rel="stylesheet" type="text/css" href="../style/navbar.css">
+
 <nav class="navbar">
     <div class="utils-co">
         <?php if (isset($_SESSION["authentifie"]) && $_SESSION["authentifie"] === true): ?>
@@ -108,47 +110,3 @@ if (session_status() === PHP_SESSION_NONE) {
         <a href="contact.php" class="<?= $currentPage == 'contact.php' ? 'active' : '' ?>">CONTACT</a>
     </div>
 </nav>
-
-<style>
-    nav#cart {
-        padding: 20px;
-        width: 300px;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        color: black;
-    }
-
-    .cart-counter {
-        background-color: yellow;
-        color: black;
-        font-size: 12px;
-        font-weight: bold;
-        border-radius: 50%;
-        padding: 3px 8px;
-        transform: translate(50%, -50%);
-        z-index: 1001;
-    }
-
-    .delete-icon {
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        background-color: transparent;
-        border: 2px solid yellow;
-        color: yellow;
-        font-size: 14px;
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-    }
-
-    .delete-icon:hover {
-        background-color: yellow;
-        color: black;
-        border-color: yellow;
-    }
-</style>

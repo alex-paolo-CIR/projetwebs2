@@ -118,6 +118,7 @@ if (empty($success_message) && empty($error_message) && $_SERVER['REQUEST_METHOD
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier Utilisateur - Administration</title>
+    <!-- <link rel="stylesheet" href="../style/admin.css"> -->
     <style>
         body {
             font-family: Arial, sans-serif;
