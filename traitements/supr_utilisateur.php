@@ -26,7 +26,6 @@ if ($user_id_to_delete) {
             header('location: ' . $redirect_url . '?error=utilisateur_introuvable');
             exit;
         }
-
     } catch (PDOException $e) {
         header('location: ' . $redirect_url . '?error=echec_suppression');
         exit;

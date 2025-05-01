@@ -31,7 +31,6 @@ try {
 
     $stmt_categories = $conn->query("SELECT id, nom FROM categories_produits ORDER BY nom");
     $categories = $stmt_categories->fetchAll(PDO::FETCH_ASSOC);
-
 } catch (\PDOException $e) {
     $error_message = "Erreur lors de la récupération des données. Impossible d'afficher le formulaire.";
     $product = null;

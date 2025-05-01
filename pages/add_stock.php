@@ -1,8 +1,7 @@
 <?php
 session_start();
-require_once '../traitements/db.php'; 
+require_once '../traitements/db.php';
 
-// Securité
 if (!isset($_SESSION['admin']) || $_SESSION['admin'] != 1) {
     header('Location: accueil.php?error=unauthorized');
     exit;
@@ -13,35 +12,25 @@ $success_message = '';
 $products = [];
 $sizes = [];
 
-
 try {
     $stmt_products = $conn->query("SELECT id, nom FROM produits ORDER BY nom");
     $products = $stmt_products->fetchAll(PDO::FETCH_ASSOC);
 
-    $stmt_sizes = $conn->query("SELECT id, nom FROM tailles ORDER BY nom"); 
+    $stmt_sizes = $conn->query("SELECT id, nom FROM tailles ORDER BY nom");
     $sizes = $stmt_sizes->fetchAll(PDO::FETCH_ASSOC);
-
 } catch (\PDOException $e) {
-    $error_message = "Erreur lors de la récupération des données pour le formulaire: " . $e->getMessage();
-    
-    $error_message = "Erreur lors de la récupération des données. Impossible d'afficher le formulaire."; 
+    $error_message = "Erreur lors de la récupération des données. Impossible d'afficher le formulaire.";
 }
-
-
-
-
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $produit_id = filter_input(INPUT_POST, 'produit_id', FILTER_VALIDATE_INT);
     $taille_id = filter_input(INPUT_POST, 'taille_id', FILTER_VALIDATE_INT);
     $quantite = filter_input(INPUT_POST, 'quantite', FILTER_VALIDATE_INT, ["options" => ["min_range" => 0]]);
 
-    // Validation
     if (!$produit_id || !$taille_id || $quantite === false) {
         $error_message = "Veuillez sélectionner un produit, une taille et entrer une quantité valide (0 ou plus).";
     } else {
         try {
-            // Verif si produit/taille existe déja dans stockproduits
             $check_sql = "SELECT id FROM stock_produits WHERE produit_id = :produit_id AND taille_id = :taille_id";
             $check_stmt = $conn->prepare($check_sql);
             $check_stmt->bindParam(':produit_id', $produit_id, PDO::PARAM_INT);
@@ -50,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $existing_stock = $check_stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($existing_stock) {
-
                 $error_message = "Cette combinaison produit/taille existe déjà dans le stock. Utilisez 'Gérer Stock' sur la page admin pour mettre à jour la quantité.";
             } else {
                 $insert_sql = "INSERT INTO stock_produits (produit_id, taille_id, quantite) VALUES (:produit_id, :taille_id, :quantite)";
@@ -67,15 +55,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         } catch (\PDOException $e) {
             error_log("Add Stock Error: " . $e->getMessage());
-            if ($e->getCode() == '23000') { 
-                 $error_message = "Erreur : Cette combinaison produit/taille existe déjà.";
-            } else {
-                $error_message = "Erreur base de données lors de l'ajout du stock.";
-            }
+            $error_message = $e->getCode() == '23000' ? "Erreur : Cette combinaison produit/taille existe déjà." : "Erreur base de données lors de l'ajout du stock.";
         }
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -83,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/admin.css">
-    <link rel="stylesheet" href="../style/forms.css"> 
+    <link rel="stylesheet" href="../style/forms.css">
     <title>Ajouter une Entrée de Stock - Admin</title>
     <style>
         .form-container { max-width: 600px; margin: 20px auto; padding: 20px; background: #f4f4f4; border-radius: 8px; }
@@ -149,9 +132,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </form>
         <?php elseif (empty($error_message)) : ?>
-             <p class="message error">Impossible d'ajouter du stock : Aucun produit ou taille n'a été trouvé dans la base de données.</p>
+            <p class="message error">Impossible d'ajouter du stock : Aucun produit ou taille n'a été trouvé dans la base de données.</p>
         <?php endif; ?>
-         <a href="admin.php#stock" class="link-back" style="display: block; text-align: center; margin-top: 20px;">« Retour au Panneau Admin</a>
+        <a href="admin.php#stock" class="link-back" style="display: block; text-align: center; margin-top: 20px;">« Retour au Panneau Admin</a>
     </div>
 </body>
 </html>

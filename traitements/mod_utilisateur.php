@@ -56,12 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    if (!empty($password)) {
-        // if (strlen($password) < 6) {
-        //     $form_errors['password'] = 'Le mot de passe doit faire au moins 6 caractères';
-        // }
-    }
-
     if (empty($form_errors) && empty($error_message)) {
         try {
             if (!empty($password)) {
@@ -72,7 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             $stmt_update = $conn->prepare($sql_update);
-
             $stmt_update->bindParam(':nom', $nom, PDO::PARAM_STR);
             $stmt_update->bindParam(':prenom', $prenom, PDO::PARAM_STR);
             $stmt_update->bindParam(':email', $email, PDO::PARAM_STR);
@@ -88,7 +81,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $error_message = 'Erreur lors de la mise à jour de l\'utilisateur';
             }
-
         } catch (PDOException $e) {
             $error_message = 'Erreur technique lors de la mise à jour';
         }

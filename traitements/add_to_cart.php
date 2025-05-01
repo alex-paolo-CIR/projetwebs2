@@ -3,9 +3,8 @@ session_start();
 
 if (!empty($_POST['product_id']) && !empty($_POST['size'])) {
     $product_id = intval($_POST['product_id']);
-    $size = htmlspecialchars($_POST['size']); // Récupérer la taille sélectionnée
+    $size = htmlspecialchars($_POST['size']);
 
-    // Ajouter le produit et la taille au panier
     if (!isset($_SESSION['cart'][$product_id])) {
         $_SESSION['cart'][$product_id] = [
             'quantity' => 0,
@@ -14,7 +13,7 @@ if (!empty($_POST['product_id']) && !empty($_POST['size'])) {
     }
 
     $_SESSION['cart'][$product_id]['quantity']++;
-    $_SESSION['cart'][$product_id]['size'] = $size; // Mettre à jour la taille
+    $_SESSION['cart'][$product_id]['size'] = $size;
 
     $_SESSION['notification'] = "Produit ajouté au panier avec succès !";
 }

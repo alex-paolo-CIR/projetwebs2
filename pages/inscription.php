@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href="../style/main.css">
     <link rel="stylesheet" type="text/css" href="../style/navbar.css">
     <link rel="stylesheet" type="text/css" href="../style/connexion.css">
-
 </head>
 
 <body>
@@ -19,13 +18,10 @@
         </video>
 
         <div class="overlay">
-
             <nav class="navbar">
-
                 <div class="logo">
                     <a href="../index.html"><img src="../media/logo_msd.png" alt="Logo"></a>
                 </div>
-
                 <div class="navbar-menu">
                     <a href="accueil.php">ACCUEIL</a>
                     <a href="shop.php">BOUTIQUE</a>
@@ -33,9 +29,7 @@
                 </div>
             </nav>
 
-
             <?php
-                // Verif erreurs l'URL
                 if (isset($_GET['error'])) {
                     $error = $_GET['error'];
                     $errorMessage = '';
@@ -48,46 +42,32 @@
                         $errorMessage = "Email invalide";
                     } elseif ($error == 'nom_prenom_invalide') {
                         $errorMessage = "Nom / Prénom invalide";
-                    };
+                    }
                 }
             ?>
 
-
-
-
             <div class="conteneur-login-global">
-
-
-            <!-- Div contenant le message d'erreur si nécessaire -->
-            <?php if (!empty($errorMessage)): ?>
-                            <div class="error-message">
-                                <?php echo $errorMessage; ?>
-                            </div>
-            <?php endif; ?>
-
+                <?php if (!empty($errorMessage)): ?>
+                    <div class="error-message">
+                        <?php echo $errorMessage; ?>
+                    </div>
+                <?php endif; ?>
 
                 <div class="conteneur-login">
                     <form action="../traitements/traitement_inscription.php" method="post">
-
                         <h1>Inscription</h1>
-
-                            <div class="np">
-                                <div class="input-box" id="nom">
+                        <div class="np">
+                            <div class="input-box" id="nom">
                                 <input type="text" placeholder="Nom" name="nom" required>
                             </div>
-
                             <div class="input-box">
                                 <input type="text" placeholder="Prénom" name="prenom" required>
                             </div>
-                            
                         </div>
-                        
-
                         <div class="input-box">
                             <input type="email" placeholder="Adresse e-mail" name="email" required>
                             <img id="mail" src="../media/icon-mail.png" alt="icon-mail">
                         </div>
-
                         <div class="input-box">
                             <input type="password" placeholder="Mot de passe" name="password" required>
                             <img id="pwd" src="../media/icon-lock.png" alt="icon-lock">
@@ -96,20 +76,15 @@
                             <input type="password" placeholder="Confirmer le mot de passe" name="password_confirm" required>
                             <img id="pwd" src="../media/icon-lock.png" alt="icon-lock">
                         </div>
-
-
-                        <button type="submit" class="btn" name="Ajouter" >S'inscrire</button>
-
+                        <button type="submit" class="btn" name="Ajouter">S'inscrire</button>
                         <div class="inscription">
                             <p>Déjà un compte ? <a href="connexion.php">Se connecter</a></p>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
     </section>
-
 
     <?php require_once 'footer.php'; ?>
 </body>

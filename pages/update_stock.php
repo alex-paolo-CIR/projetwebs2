@@ -17,28 +17,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         $conn->beginTransaction();
-        $sql = "UPDATE stock_produits SET quantite = :quantite WHERE id = :stock_id";
-        $stmt = $conn->prepare($sql);
+        $stmt = $conn->prepare("UPDATE stock_produits SET quantite = :quantite WHERE id = :stock_id");
         $stmt->bindParam(':quantite', $quantite, PDO::PARAM_INT);
         $stmt->bindParam(':stock_id', $stock_id, PDO::PARAM_INT);
-        $success = $stmt->execute();
-
-        if ($success) {
+        if ($stmt->execute()) {
             $conn->commit();
             header('Location: admin.php?status=stock_updated#stock');
-            exit;
         } else {
             $conn->rollBack();
             header('Location: admin.php?error=update_failed#stock');
-            exit;
         }
     } catch (\PDOException $e) {
         $conn->rollBack();
         error_log("Stock Update Error: " . $e->getMessage());
         header('Location: admin.php?error=db_error#stock');
-        exit;
     }
-} else {
-    header('Location: admin.php#stock');
     exit;
 }
+
+header('Location: admin.php#stock');
+exit;

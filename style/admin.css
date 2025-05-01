@@ -5,7 +5,8 @@ body {
   background-color: #1a1a1a;
   color: #e0e0e0;
 }
-h1, h2 {
+h1,
+h2 {
   color: #ffffff;
   border-bottom: 2px solid yellow;
   padding-bottom: 8px;
@@ -53,7 +54,8 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
-th, td {
+th,
+td {
   border: 1px solid #555;
   padding: 10px 12px;
   text-align: left;
@@ -73,7 +75,8 @@ tr:nth-child(even) {
 tr:hover {
   background-color: #4a4a4a;
 }
-.actions a, .actions button {
+.actions a,
+.actions button {
   margin-right: 5px;
   text-decoration: none;
   padding: 5px 10px;
@@ -85,7 +88,8 @@ tr:hover {
   border: none;
   color: white;
 }
-.actions a:hover, .actions button:hover {
+.actions a:hover,
+.actions button:hover {
   opacity: 0.9;
   transform: translateY(-1px);
 }
@@ -214,7 +218,8 @@ td span.status-not-admin {
   width: 100%;
   border-collapse: collapse;
 }
-.modal-content th, .modal-content td {
+.modal-content th,
+.modal-content td {
   border: 1px solid #555;
   padding: 8px 10px;
   text-align: left;
@@ -282,7 +287,11 @@ label.actions.view:hover {
   color: #555;
   font-weight: bold;
 }
-.form-group input[type="text"], .form-group input[type="number"], .form-group input[type="file"], .form-group textarea, .form-group select {
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="file"],
+.form-group textarea,
+.form-group select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -348,7 +357,6 @@ label.actions.view:hover {
   text-decoration: underline;
 }
 
-
 /* --- styles pour la page ajouter_item --- */
 
 #ajouter_item {
@@ -368,12 +376,11 @@ label.actions.view:hover {
   border-radius: 12px;
   padding: 20px 25px;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
-  
-  /* Centrage horizontal */
-  margin: 0 auto; 
-  display: block; 
-}
 
+  /* Centrage horizontal */
+  margin: 0 auto;
+  display: block;
+}
 
 #ajouter_item label {
   display: block;

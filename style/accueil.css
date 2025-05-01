@@ -111,9 +111,9 @@
   display: flex;
   margin: 10px;
   font-size: calc(0.5em + 1vw);
-  overflow: visible; 
-  white-space: normal; 
-  word-wrap: break-word; 
+  overflow: visible;
+  white-space: normal;
+  word-wrap: break-word;
 }
 
 .image {

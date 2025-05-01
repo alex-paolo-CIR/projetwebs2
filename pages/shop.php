@@ -23,22 +23,20 @@ try {
     <link rel="stylesheet" type="text/css" href="../style/navbar.css">
     <link rel="stylesheet" type="text/css" href="../style/shop.css">
     <style>
-        <?php foreach ($produits as $index => $produit): 
-            $image_hover = htmlspecialchars($produit['image_hover']);
-        ?>
+        <?php foreach ($produits as $index => $produit): ?>
         .item:nth-child(<?= $index + 1 ?>):hover img {
-            content: url("../media/merch/<?= $image_hover ?>");
+            content: url("../media/merch/<?= htmlspecialchars($produit['image_hover']) ?>");
         }
         <?php endforeach; ?>
         .notif {
             position: fixed;
             top: 20px;
             right: 20px;
-            background-color: rgba(0, 128, 0, 0.9); 
+            background-color: rgba(0, 128, 0, 0.9);
             color: #ffffff;
             padding: 15px 25px;
             border-radius: 12px;
-            border: 2px solid #4CAF50; 
+            border: 2px solid #4CAF50;
             box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
             font-family: "Arial", sans-serif;
             font-size: 16px;
@@ -79,38 +77,29 @@ try {
 
     <div class="conteneur-shop">
         <div class="shop-grid">
-            <?php foreach ($produits as $index => $produit): 
-                $nom = htmlspecialchars($produit['nom']);
-                $prix = number_format($produit['prix'], 2);
-                $image = htmlspecialchars($produit['image']);
-            ?>
+            <?php foreach ($produits as $index => $produit): ?>
                 <div class="item" id="item<?= $index + 1 ?>">
                     <a href="#modal<?= $index + 1 ?>">
-                        <img src="../media/merch/<?= $image ?>" alt="<?= $nom ?>">
-                        <p><?= $nom ?> - <?= $prix ?>€</p>
+                        <img src="../media/merch/<?= htmlspecialchars($produit['image']) ?>" alt="<?= htmlspecialchars($produit['nom']) ?>">
+                        <p><?= htmlspecialchars($produit['nom']) ?> - <?= number_format($produit['prix'], 2) ?>€</p>
                     </a>
                 </div>
             <?php endforeach; ?>
         </div>
     </div>
 
-    <?php foreach ($produits as $index => $produit): 
-        $nom = htmlspecialchars($produit['nom']);
-        $image = htmlspecialchars($produit['image']);
-        $description = htmlspecialchars($produit['description']);
-        $prix = number_format($produit['prix'], 2);
-    ?>
+    <?php foreach ($produits as $index => $produit): ?>
         <div id="modal<?= $index + 1 ?>" class="modal">
             <div class="modal-content">
                 <a href="#item<?= $index + 1 ?>" class="close">×</a>
                 <div class="modal-layout">
                     <div class="agauche">
-                        <img src="../media/merch/<?= $image ?>" alt="<?= $nom ?>" class="modal-image">
+                        <img src="../media/merch/<?= htmlspecialchars($produit['image']) ?>" alt="<?= htmlspecialchars($produit['nom']) ?>" class="modal-image">
                     </div>
                     <div class="modal-info">
-                        <h2><?= $nom ?></h2>
-                        <p class="description"><?= $description ?></p>
-                        <p class="price"><?= $prix ?>€</p>
+                        <h2><?= htmlspecialchars($produit['nom']) ?></h2>
+                        <p class="description"><?= htmlspecialchars($produit['description']) ?></p>
+                        <p class="price"><?= number_format($produit['prix'], 2) ?>€</p>
                         <form method="POST" action="../traitements/add_to_cart.php">
                             <div class="size-selector">
                                 <?php foreach (['XS', 'S', 'M', 'L', 'XL'] as $size): ?>

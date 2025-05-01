@@ -5,7 +5,6 @@ if (session_status() === PHP_SESSION_NONE) {
 ?>
 
 <nav class="navbar">
-    <!-- User Authentication Section -->
     <div class="utils-co">
         <?php if (isset($_SESSION["authentifie"]) && $_SESSION["authentifie"] === true): ?>
             <a href="profil.php">
@@ -14,8 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <div class="gest">
                 <a href="../traitements/logout.php" class="deco">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="red" width="24" height="24" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1" />
                     </svg>
                 </a>
                 <?php if (isset($_SESSION["admin"]) && $_SESSION["admin"] == 1): ?>
@@ -33,14 +31,12 @@ if (session_status() === PHP_SESSION_NONE) {
         <?php endif; ?>
     </div>
 
-    <!-- Logo Section -->
     <div class="logo">
         <a href="../index.html">
             <img src="../media/logo_msd.png" alt="Logo">
         </a>
     </div>
 
-    <!-- Cart Section -->
     <div class="utils-ca">
         <button popovertarget="cart" popovertargetaction="show" class="button">
             <img id="panier" class="icones" src="../media/icon-cart.png" alt="Panier">
@@ -60,7 +56,6 @@ if (session_status() === PHP_SESSION_NONE) {
         </button>
     </div>
 
-    <!-- Cart Popover -->
     <nav popover id="cart">
         <button popovertarget="cart" popovertargetaction="hide" class="button close-button">×</button>
         <?php
@@ -71,7 +66,6 @@ if (session_status() === PHP_SESSION_NONE) {
                 $stmt = $conn->prepare("SELECT * FROM produits WHERE id = ?");
                 $stmt->execute([$product_id]);
                 $product = $stmt->fetch();
-        
                 if ($product) {
                     $subtotal = $product['prix'] * $details['quantity'];
                     $total += $subtotal;
@@ -88,7 +82,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             <p><strong><?= htmlspecialchars($product['nom']) ?></strong></p>
                             <p>Prix: <?= number_format($product['prix'], 2) ?> €</p>
                             <p>Quantité: <?= $details['quantity'] ?></p>
-                            <p>Taille: <?= htmlspecialchars($details['size']) ?></p> <!-- Affiche la taille -->
+                            <p>Taille: <?= htmlspecialchars($details['size']) ?></p>
                             <p>Total: <?= number_format($subtotal, 2) ?> €</p>
                         </div>
                     </div>
@@ -107,7 +101,6 @@ if (session_status() === PHP_SESSION_NONE) {
         ?>
     </nav>
 
-    <!-- Navigation Menu -->
     <?php $currentPage = basename($_SERVER['PHP_SELF']); ?>
     <div class="navbar-menu">
         <a href="accueil.php" class="<?= $currentPage == 'accueil.php' ? 'active' : '' ?>">ACCUEIL</a>
@@ -116,7 +109,6 @@ if (session_status() === PHP_SESSION_NONE) {
     </div>
 </nav>
 
-<!-- Styles -->
 <style>
     nav#cart {
         padding: 20px;
