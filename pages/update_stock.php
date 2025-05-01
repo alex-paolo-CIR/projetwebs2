@@ -1,8 +1,7 @@
 <?php
 session_start();
-require_once '../traitements/db.php'; 
+require_once '../traitements/db.php';
 
-// Verif admin
 if (!isset($_SESSION['admin']) || $_SESSION['admin'] != 1) {
     header('Location: accueil.php?error=unauthorized');
     exit;
@@ -16,39 +15,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // MAJ
     try {
-        $conn->beginTransaction(); 
-
+        $conn->beginTransaction();
         $sql = "UPDATE stock_produits SET quantite = :quantite WHERE id = :stock_id";
         $stmt = $conn->prepare($sql);
-
         $stmt->bindParam(':quantite', $quantite, PDO::PARAM_INT);
         $stmt->bindParam(':stock_id', $stock_id, PDO::PARAM_INT);
-
         $success = $stmt->execute();
 
         if ($success) {
-            $conn->commit(); 
+            $conn->commit();
             header('Location: admin.php?status=stock_updated#stock');
             exit;
         } else {
-            $conn->rollBack(); 
+            $conn->rollBack();
             header('Location: admin.php?error=update_failed#stock');
             exit;
         }
-
     } catch (\PDOException $e) {
-        $conn->rollBack(); 
+        $conn->rollBack();
         error_log("Stock Update Error: " . $e->getMessage());
         header('Location: admin.php?error=db_error#stock');
         exit;
-    } finally {
-        // $conn = null;
     }
-
 } else {
     header('Location: admin.php#stock');
     exit;
 }
-?>
