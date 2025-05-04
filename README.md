@@ -1,6 +1,6 @@
 # Projet Web S2
 
-[📄 Télécharger le fichier `projet25_dbmsd.sql`](https://github.com/alex-paolo-CIR/projetwebs2/raw/main/projet25_dbmsd.sql)
+[📄 Télécharger le fichier `projet25_dbmsd.sql`](https://github.com/alex-paolo-CIR/projetwebs2/blob/main/projet25_dbmsd.sql)
 
 ---
 
