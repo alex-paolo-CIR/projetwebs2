@@ -32,30 +32,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device.width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>MSD - Connexion</title>
     <link rel="icon" type="image/x-icon" href="../media/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../style/main.css">
+    <link rel="stylesheet" type="text/css" href="../style/navbar.css">
     <link rel="stylesheet" type="text/css" href="../style/profil.css">
-    <title>Profil</title>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Modifier votre profil</h1>
-        <form method="POST">
-            <label for="nom">Nom</label>
-            <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($user['nom']) ?>" required>
+    <section class="fond">
+        <video autoplay loop muted playsinline class="video-webm">
+            <source src="../media/fond.webm" type="video/webm">
+        </video>
+        <div class="overlay">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="../index.html"><img src="../media/logo_msd.png" alt="Logo"></a>
+                </div>
+                <div class="navbar-menu">
+                    <a href="accueil.php">ACCUEIL</a>
+                    <a href="shop.php">BOUTIQUE</a>
+                    <a href="contact.php">CONTACT</a>
+                </div>
+            </nav>
+            <div class="container">
+                <h1>Modifier votre profil</h1>
+                <form method="POST" class="profile-form">
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($user['nom']) ?>" required>
 
-            <label for="prenom">Prénom</label>
-            <input type="text" id="prenom" name="prenom" value="<?= htmlspecialchars($user['prenom']) ?>" required>
+                    <label for="prenom">Prénom</label>
+                    <input type="text" id="prenom" name="prenom" value="<?= htmlspecialchars($user['prenom']) ?>"
+                        required>
 
-            <label for="password">Mot de passe (laisser vide pour ne pas changer)</label>
-            <input type="password" id="password" name="password">
+                    <label for="password">Mot de passe (laisser vide pour ne pas changer)</label>
+                    <input type="password" id="password" name="password">
 
-            <button type="submit">Mettre à jour</button>
-        </form>
-    </div>
+                    <button type="submit">Mettre à jour</button>
+                </form>
+            </div>
+        </div>
+    </section>
 </body>
+
 </html>
