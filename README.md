@@ -4,9 +4,6 @@
 
 ---
 
-Ajoutez ce contenu dans votre fichier `README.md` pour simplifier l'accès au fichier pour votre professeur. Si vous souhaitez d'autres modifications, faites-le-moi savoir ! 😊
----
-
 ## 🔑 Connexion
 
 L'application propose deux types de comptes : **Administrateur** et **Utilisateur Standard**. Voici comment vous connecter :
