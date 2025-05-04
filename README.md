@@ -1,6 +1,6 @@
 # Projet Web S2
 
-[📄 COMPTE RENDU ](https://github.com/alex-paolo-CIR/projetwebs2/blob/main/)
+[📄 COMPTE RENDU ](https://github.com/alex-paolo-CIR/projetwebs2/blob/main/compte_rendu_projet_WEB_S2_MSD.pdf)
 
 [📄 Télécharger le fichier `projet25_dbmsd.sql`](https://github.com/alex-paolo-CIR/projetwebs2/blob/main/projet25_dbmsd.sql)
 
