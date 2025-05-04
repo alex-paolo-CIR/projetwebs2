@@ -1,5 +1,10 @@
 # Projet Web S2
 
+[📄 Télécharger le fichier `projet25_dbmsd.sql`](https://github.com/alex-paolo-CIR/projetwebs2/raw/main/projet25_dbmsd.sql)
+
+---
+
+Ajoutez ce contenu dans votre fichier `README.md` pour simplifier l'accès au fichier pour votre professeur. Si vous souhaitez d'autres modifications, faites-le-moi savoir ! 😊
 ---
 
 ## 🔑 Connexion
